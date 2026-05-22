@@ -185,36 +185,28 @@
     .hero-photo {
       position: relative;
       width: 100%;
-      max-width: 340px;
+      max-width: 360px;
       aspect-ratio: 4 / 5;
       margin-left: auto;
       border-radius: var(--radius);
       background: linear-gradient(135deg, #e5d1bb 0%, #c9a684 100%);
       box-shadow: var(--shadow);
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--ink-soft);
-      font-size: 13px;
-      letter-spacing: 0.05em;
     }
-    .hero-photo::before {
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .hero-photo::after {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(181,83,42,0.15), transparent 60%);
-    }
-    .hero-photo span {
-      position: relative;
-      z-index: 1;
-      background: rgba(255,255,255,0.85);
-      padding: 8px 16px;
-      border-radius: 999px;
-      text-transform: uppercase;
-      font-weight: 500;
+      pointer-events: none;
+      border-radius: var(--radius);
+      box-shadow: inset 0 0 0 6px rgba(255, 245, 230, 0.55);
     }
 
     /* ---------- Sections ---------- */
@@ -517,11 +509,11 @@
         </div>
         <div class="hero-cta">
           <a href="#contact" class="btn btn-primary">Get in touch →</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/divyanshi-yadav26/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
         </div>
       </div>
-      <div class="hero-photo" aria-label="Photo placeholder">
-        <span>Your photo here</span>
+      <div class="hero-photo">
+        <img src="assets/profile.jpg" alt="Divyanshi Yadav" onerror="this.style.display='none'" />
       </div>
     </div>
   </header>
@@ -704,8 +696,8 @@
           opportunities. The best way to reach me is via LinkedIn or email.
         </p>
         <div class="contact-actions">
-          <a href="mailto:divyanshiyadav1995@gmail.com" class="btn btn-primary">Email me →</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+          <a href="mailto:divyanshiyadav26@gmail.com" class="btn btn-primary">Email me →</a>
+          <a href="https://www.linkedin.com/in/divyanshi-yadav26/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
         </div>
         <div class="callout">
           <span class="callout-icon">📢</span>
