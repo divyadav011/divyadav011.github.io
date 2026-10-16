@@ -377,11 +377,14 @@
       color: var(--ink-soft);
       line-height: 1.6;
     }
-    .scqa-body ol {
-      margin-top: 8px;
+    .scqa-body ol,
+    .scqa-body ul {
+      margin: 0;
       padding-left: 18px;
     }
-    .scqa-body ol li { margin-bottom: 6px; }
+    .scqa-body li { margin-bottom: 6px; }
+    .scqa-body li:last-child { margin-bottom: 0; }
+    .scqa-body ul li::marker { color: var(--accent); }
     @media (max-width: 820px) {
       .scqa-row { grid-template-columns: 1fr; gap: 6px; }
     }
@@ -456,6 +459,9 @@
     }
     .context-body p { margin-bottom: 8px; }
     .context-body p:last-child { margin-bottom: 0; }
+    .context-body ul { margin: 0; padding-left: 16px; }
+    .context-body li { margin-bottom: 5px; }
+    .context-body li::marker { color: var(--accent); }
     @media (max-width: 820px) {
       .project-card.has-context { grid-template-columns: 1fr; gap: 24px; }
       .context-panel { position: static; }
@@ -863,52 +869,51 @@
           <span class="project-tag">Medical Affairs · KOL Engagement · AI-enabled</span>
           <h3>KOL Profiling Engine for an IBD Advisory Board</h3>
           <p class="project-sub">
-            <strong>Brief:</strong> Profiled 51 inflammatory bowel disease (Crohn's and UC) key opinion
-            leaders across US and ex-US markets for a pharma client's advisory board and recommended the
-            board's strategic discussion themes. Delivered in 15 days against a two-month manual baseline,
-            and the workflow is now being built into Lucid's Fusion platform as a reusable,
-            asset-tailored KOL profiling capability.
+            <strong>Brief:</strong> Profiled 51 IBD key opinion leaders across US and ex-US markets for a
+            pharma advisory board and recommended its strategic discussion themes. Delivered in 15 days
+            against a two-month manual baseline; now being built into Lucid's Fusion platform.
           </p>
 
           <div class="scqa">
             <div class="scqa-row">
               <div class="scqa-label">Situation</div>
               <div class="scqa-body">
-                A pharma client was preparing an advisory board for an asset in inflammatory bowel disease.
-                IBD is one of the most crowded fields in immunology, with ten-plus advanced therapies and no
-                reliable biomarker to predict who responds to which, so the live debates among
-                gastroenterologists are about sequencing, how early and aggressively to treat, and safety
-                trade-offs between drug classes. The client needed to know not just who the experts were,
-                but where each stood on those debates and who would shape the conversation about this asset.
+                <ul>
+                  <li>Pharma client preparing an advisory board for an asset in inflammatory bowel disease.</li>
+                  <li>IBD is one of the most crowded fields in immunology: 10+ advanced therapies, no biomarker to predict response.</li>
+                  <li>Live KOL debates are about sequencing, how early and aggressively to treat, and safety trade-offs between classes.</li>
+                  <li>Client needed to know where each expert stood on those debates, not just who they were.</li>
+                </ul>
               </div>
             </div>
             <div class="scqa-row">
               <div class="scqa-label">Complication</div>
               <div class="scqa-body">
-                The data existed but was scattered. H1 gave the clinical and publication backbone;
-                congress presence (ECCO, DDW, UEG Week), social media activity and recent positions sat
-                across LinkedIn, X and journal sites. Done manually for 51 people this was a two-month job,
-                with inconsistent output because every analyst summarises an expert differently. And the
-                client wanted an agenda, not a directory, which meant synthesising across 51 people rather
-                than describing them one at a time.
+                <ul>
+                  <li>Data scattered: H1 for clinical and publication records; congress activity (ECCO, DDW, UEG Week), social media and recent positions spread across LinkedIn, X and journal sites.</li>
+                  <li>Manual profiling of 51 KOLs was a two-month job, with inconsistent output across analysts.</li>
+                  <li>Client wanted an agenda, not a directory: the 51 profiles had to be synthesised, not just described.</li>
+                </ul>
               </div>
             </div>
             <div class="scqa-row">
               <div class="scqa-label">Solution</div>
               <div class="scqa-body">
                 <ol>
-                  <li>Designed a standard profile template so every KOL was captured against the same dimensions: clinical focus, institutional role, publication themes, congress activity, digital voice and stated positions relevant to the asset and indication.</li>
-                  <li>Pulled core profiles and publications from H1, then used Claude Cowork to extract and structure social media and congress activity against the template, so the work became quality control and judgement rather than reading 51 timelines by hand.</li>
-                  <li>Synthesised across all 51 profiles to surface recurring themes, points of disagreement and emerging topics, and translated them into proposed strategic discussion themes for the advisory board, each mapped to the KOLs most likely to drive it.</li>
+                  <li>Designed a standard profile template: clinical focus, institutional role, publication themes, congress activity, digital voice, stated positions on the asset and indication.</li>
+                  <li>Pulled core profiles and publications from H1; used Claude Cowork to extract and structure social and congress activity against the template, with human QC on every profile.</li>
+                  <li>Synthesised across all 51 to surface recurring themes, disagreements and emerging topics; translated them into ad-board discussion themes, each mapped to the KOLs most likely to drive it.</li>
                 </ol>
               </div>
             </div>
             <div class="scqa-row">
               <div class="scqa-label">Impact</div>
               <div class="scqa-body">
-                Delivered in 15 days of effort against a two-month baseline. The client received 51
-                consistent, evidence-backed profiles and an advisory board agenda grounded in what these
-                experts are actually saying, rather than what we assumed they would say.
+                <ul>
+                  <li>15 days of effort vs. a two-month baseline (~75% faster).</li>
+                  <li>51 consistent, evidence-backed profiles and an ad-board agenda grounded in what the experts are actually saying.</li>
+                  <li>Template and workflow being productised into Lucid's Fusion platform for asset- and indication-tailored KOL profiles.</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -927,11 +932,6 @@
               <div class="stat-label">reduction in effort</div>
             </div>
           </div>
-          <p class="project-note">
-            <strong>What it became:</strong> the template and workflow are being built into Lucid's core
-            Fusion platform, so KOL profiles can be generated and tailored to a specific asset and
-            indication instead of rebuilt from scratch for every engagement.
-          </p>
         </div>
 
         <aside class="context-panel">
@@ -941,11 +941,24 @@
             </summary>
             <div class="context-body">
               <h5>What IBD is</h5>
-              <p>Inflammatory bowel disease covers two chronic, relapsing conditions of the gut: Crohn's disease and ulcerative colitis. In genetically susceptible people, an exaggerated immune response to the gut's own microbiome drives persistent inflammation. Onset is typically in the 20s and 30s, there is no cure, and around seven million people live with it worldwide, so treatment is about inducing and holding remission for decades.</p>
+              <ul>
+                <li>Two chronic, relapsing gut conditions: Crohn's disease and ulcerative colitis (UC).</li>
+                <li>Driven by an exaggerated immune response to the gut microbiome in genetically susceptible people.</li>
+                <li>Onset typically in the 20s–30s; no cure; ~7 million patients worldwide; goal is to induce and hold remission for decades.</li>
+              </ul>
               <h5>Crohn's vs. UC</h5>
-              <p>In UC the inflammation is continuous and confined to the lining of the colon and rectum; colectomy is curative but life-altering. In Crohn's it is patchy, can affect any part of the digestive tract and goes through the full bowel wall, leading to strictures, fistulas and abscesses; most patients eventually need surgery, and surgery is not curative. UC is often the proof-of-concept indication for a new mechanism, with Crohn's following a year or two later.</p>
+              <ul>
+                <li>UC: continuous inflammation confined to the colon lining; colectomy is curative but life-altering.</li>
+                <li>Crohn's: patchy, anywhere mouth to anus, through the full bowel wall; strictures, fistulas and abscesses; surgery common but not curative.</li>
+                <li>UC is usually the proof-of-concept indication for a new mechanism; Crohn's follows 1–2 years later.</li>
+              </ul>
               <h5>Treatment landscape</h5>
-              <p>Conventional therapy (5-ASAs, steroids, immunomodulators) at the base; above it the advanced therapies where the commercial action is: anti-TNFs now largely biosimilar, the gut-selective anti-integrin vedolizumab, IL-23 inhibitors as the current growth engine, oral JAK and S1P drugs, and new mechanisms such as anti-TL1A antibodies and obefazimod in phase 3. Most monotherapies plateau at 30 to 40% remission, which drives the debates about sequencing, early intervention and combination therapy.</p>
+              <ul>
+                <li>Base: 5-ASAs, steroids, immunomodulators.</li>
+                <li>Advanced: anti-TNFs (now biosimilar), anti-integrin vedolizumab, IL-23 inhibitors (current growth engine), oral JAK and S1P drugs.</li>
+                <li>Pipeline: anti-TL1A antibodies and obefazimod in phase 3.</li>
+                <li>Most monotherapies plateau at 30–40% remission, which drives the sequencing and combination debates.</li>
+              </ul>
             </div>
           </details>
         </aside>
@@ -956,75 +969,59 @@
           <span class="project-tag">In-licensing Due Diligence · Immunology · HS &amp; axSpA · Ongoing strategic support</span>
           <h3>Asset Due Diligence</h3>
           <p class="project-sub">
-            <strong>Brief:</strong> Evaluated two early-stage immunology assets, a TNF &times; IL-17A/F
-            bispecific and a TL1A &times; IL-17A bispecific, for a biotech client building its pipeline
-            through in-licensing, to whom we provide ongoing strategic support on asset evaluation. The
-            target indications were inflammatory diseases, particularly hidradenitis suppurativa (HS) and
-            axial spondyloarthritis (axSpA). The diligence covered mechanism and target biology, scientific
-            differentiation, competitor programmes, efficacy and safety benchmarks, class and combination
-            safety signals, study-design comparison, and a recommendation on where each asset could win.
-            It supported the client's decision to move forward: non-binding term sheets were signed to
-            in-license both assets, and the client has since closed its Series B.
+            <strong>Brief:</strong> Evaluated two early-stage bispecific antibodies, TNF &times; IL-17A/F
+            and TL1A &times; IL-17A, for hidradenitis suppurativa (HS) and axial spondyloarthritis (axSpA)
+            on behalf of a biotech client building its pipeline through in-licensing. Client signed
+            non-binding term sheets on both assets and has since closed its Series B.
           </p>
 
           <div class="scqa">
             <div class="scqa-row">
               <div class="scqa-label">Situation</div>
               <div class="scqa-body">
-                A biotech client that builds its pipeline by in-licensing rather than discovering in-house
-                had identified two early-stage bispecific antibodies, TNF &times; IL-17A/F and
-                TL1A &times; IL-17A, aimed at inflammatory diseases, particularly hidradenitis suppurativa
-                and axial spondyloarthritis. Both are indications where single-target biologics have hit a
-                response ceiling, and bispecifics that block two cytokines at once are the industry's bet on
-                moving it. Before committing to a term sheet, the client needed to know whether each asset
-                was scientifically credible, how it would be differentiated against incumbents and
-                competitor programmes, and in which indications it could win.
+                <ul>
+                  <li>Biotech client that builds its pipeline by in-licensing rather than in-house discovery; we provide ongoing strategic support on asset evaluation.</li>
+                  <li>Two early-stage bispecifics identified, each pairing IL-17A with a second validated axis, aimed at HS and axSpA.</li>
+                  <li>Both indications have hit a response ceiling with single-target biologics; dual-cytokine bispecifics are the industry's bet on moving it.</li>
+                  <li>Before a term sheet, client needed: scientific credibility, differentiation vs. incumbents and competitors, and the indications where each asset could win.</li>
+                </ul>
               </div>
             </div>
             <div class="scqa-row">
               <div class="scqa-label">Complication</div>
               <div class="scqa-body">
-                Both assets were early-stage, so the case had to be built from the component evidence, and
-                that evidence was not reassuring in places. For TNF &times; IL-17A/F the rationale is
-                strong, since both pathways are proven in both HS and axSpA, but the precedent is poor:
-                earlier TNF &times; IL-17 bispecifics in the 2010s did not progress past phase 2, one for
-                failing to beat adalimumab and another on safety, and combining two cytokine blockers has
-                historically added infection risk without adding efficacy. For TL1A &times; IL-17A the
-                biology is attractive, as TL1A amplifies the Th17 response that drives IL-17 and may also
-                limit the fibrosis behind HS tunnels, but TL1A has only been validated clinically in
-                inflammatory bowel disease; there is no human data in HS or axSpA at all. Class safety
-                signals had to be weighed too: IL-17 blockade can trigger candidiasis and flare
-                inflammatory bowel disease, which matters because a meaningful share of axSpA and HS
-                patients carry gut inflammation. The competitive field is dense, with an IL-17A/F antibody
-                already approved in both indications, several IL-17 and IL-1 programmes and JAK inhibitors in
-                late-stage HS trials, and big-pharma TL1A programmes that could expand beyond IBD. And the
-                efficacy data came from trials with different endpoints (HiSCR in HS, ASAS40 in axSpA),
-                populations and durations, so no like-for-like benchmark existed.
+                <ul>
+                  <li>Early-stage assets, so the case had to be built from component evidence.</li>
+                  <li>TNF &times; IL-17A/F: strong rationale (both pathways proven in HS and axSpA) but poor precedent; earlier TNF &times; IL-17 bispecifics stalled at phase 2, one for failing to beat adalimumab, one on safety.</li>
+                  <li>TL1A &times; IL-17A: attractive biology (TL1A amplifies Th17; possible anti-fibrotic effect on HS tunnels) but TL1A is only validated in IBD; no human data in HS or axSpA.</li>
+                  <li>Class safety signals: IL-17 blockade can trigger candidiasis and flare IBD, relevant given gut inflammation in axSpA and HS populations; dual blockade has historically added infection risk.</li>
+                  <li>Dense competition: an IL-17A/F antibody already approved in both indications; IL-17, IL-1 and JAK programmes in late-stage HS trials; big-pharma TL1A programmes that could expand beyond IBD.</li>
+                  <li>No like-for-like benchmark: trials used different endpoints (HiSCR, ASAS40), populations and durations.</li>
+                </ul>
               </div>
             </div>
             <div class="scqa-row">
               <div class="scqa-label">Solution</div>
               <div class="scqa-body">
                 <ol>
-                  <li>Mapped the mechanism of action and target biology for TNF, IL-17A/F and TL1A, including where the pathways converge and where blocking one could undermine or duplicate the other.</li>
-                  <li>Built an indication-by-target evidence matrix: where each pathway is clinically proven, where it has failed, and where it is still open, across HS, axSpA and adjacent inflammatory indications.</li>
-                  <li>Assessed scientific differentiation against the incumbents and mapped every competitor programme in HS and axSpA by target, modality and stage.</li>
-                  <li>Normalised efficacy and safety benchmarks across pivotal trials and compared study designs (endpoints, populations, induction and maintenance structure) so results could be read like-for-like.</li>
-                  <li>Reviewed class and combination safety signals, drawing on discontinued dual-cytokine programmes as precedents.</li>
-                  <li>Profiled every approved and discontinued asset against each target, with the stated reason for each discontinuation.</li>
-                  <li>Recommended the indications where each asset's dual-target rationale was strongest, and set out what each would need to demonstrate to be differentiated.</li>
+                  <li>Mapped MoA and target biology for TNF, IL-17A/F and TL1A, including where pathways converge or could undermine each other.</li>
+                  <li>Built an indication-by-target evidence matrix: proven, failed, open, across HS, axSpA and adjacent indications.</li>
+                  <li>Assessed scientific differentiation vs. incumbents; mapped every competitor programme by target, modality and stage.</li>
+                  <li>Normalised efficacy and safety benchmarks across pivotal trials and compared study designs so results read like-for-like.</li>
+                  <li>Reviewed class and combination safety signals, using discontinued dual-cytokine programmes as precedents.</li>
+                  <li>Profiled every approved and discontinued asset per target, with reasons for discontinuation.</li>
+                  <li>Recommended where each asset's dual-target rationale is strongest and what it must demonstrate to be differentiated.</li>
                 </ol>
               </div>
             </div>
             <div class="scqa-row">
               <div class="scqa-label">Impact</div>
               <div class="scqa-body">
-                The client moved forward on both assets. Non-binding term sheets were signed to in-license
-                the TNF &times; IL-17A/F and TL1A &times; IL-17A bispecifics, and the client has since closed
-                its Series B financing with those assets in the pipeline story. The indication-by-target
-                evidence map, the competitor map and the normalised benchmark structure are now the standing
-                framework for the client's subsequent asset reviews, and the engagement continues as
-                ongoing strategic support.
+                <ul>
+                  <li>Client moved forward on both assets: non-binding term sheets signed to in-license the TNF &times; IL-17A/F and TL1A &times; IL-17A bispecifics.</li>
+                  <li>Client has since closed its Series B with those assets in the pipeline story.</li>
+                  <li>Evidence matrix, competitor map and benchmark structure now the standing framework for the client's subsequent asset reviews; engagement continues.</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -1037,11 +1034,25 @@
             </summary>
             <div class="context-body">
               <h5>Why bispecifics, why now</h5>
-              <p>Immunology is the largest therapeutic market after oncology, and its centre of gravity is shifting. The anti-TNF class that built the market has gone biosimilar; growth now comes from IL-17 and IL-23 antibodies and oral JAK inhibitors. The next wave is bispecifics that block two cytokines at once, aiming to raise a response ceiling that single-target drugs have not moved in a decade.</p>
+              <ul>
+                <li>Immunology is the largest therapeutic market after oncology.</li>
+                <li>Anti-TNFs that built the market are now biosimilar; growth comes from IL-17, IL-23 and oral JAKs.</li>
+                <li>Bispecifics that block two cytokines at once are the next wave, aimed at a response ceiling single-target drugs have not moved in a decade.</li>
+              </ul>
               <h5>Hidradenitis suppurativa</h5>
-              <p>A chronic, painful inflammatory skin disease in which hair follicles in the armpits, groin and buttocks become blocked and inflamed, forming recurring abscesses and tunnels under the skin. It affects around 1% of people and is typically diagnosed seven to ten years late. Adalimumab was the only approved biologic until 2023; IL-17 antibodies have since been added, and roughly half of patients still do not reach a meaningful response (HiSCR), so the pipeline is crowded with IL-17, IL-1 and JAK programmes.</p>
+              <ul>
+                <li>Chronic, painful inflammatory skin disease: blocked, inflamed hair follicles in armpits, groin and buttocks form recurring abscesses and tunnels.</li>
+                <li>~1% prevalence; typically diagnosed 7–10 years late.</li>
+                <li>Adalimumab was the only approved biologic until 2023; IL-17 antibodies since added; ~half of patients still miss a meaningful response (HiSCR).</li>
+                <li>Crowded pipeline: IL-17, IL-1 and JAK programmes.</li>
+              </ul>
               <h5>Axial spondyloarthritis</h5>
-              <p>Chronic inflammatory arthritis of the spine and sacroiliac joints, strongly linked to the HLA-B27 gene, that starts in young adults and can progress to fusion of the spine if uncontrolled. TNF blockers have been the backbone since the early 2000s; IL-17 antibodies and JAK inhibitors have joined them. IL-23 blockade, which works in psoriasis and Crohn's, failed in axSpA, a reminder that pathways do not transfer between indications automatically. The standard efficacy endpoint is ASAS40.</p>
+              <ul>
+                <li>Chronic inflammatory arthritis of the spine and sacroiliac joints; strongly HLA-B27-linked; starts in young adults; can progress to spinal fusion.</li>
+                <li>TNF blockers the backbone since the early 2000s; IL-17 antibodies and JAK inhibitors added.</li>
+                <li>IL-23 blockade works in psoriasis and Crohn's but failed in axSpA: pathways don't transfer between indications automatically.</li>
+                <li>Standard efficacy endpoint: ASAS40.</li>
+              </ul>
             </div>
           </details>
         </aside>
@@ -1052,60 +1063,54 @@
           <span class="project-tag">Med Comms · GenAI Tool Assessment · Product Development</span>
           <h3>MoA Image Generator</h3>
           <p class="project-sub">
-            <strong>Brief:</strong> Led the assessment of AI image-generation tools for a top-10 pharma
-            client that was paying around $20K per mechanism-of-action (MoA) visual. Benchmarked 20+ tools
-            against a purpose-built framework, shortlisted two (Gemini and GPT), built a prompt library and
-            trained the team on prompt engineering for scientific visuals. The approach is saving the client
-            roughly $80K a year, has cut briefing time by about 25%, and has since been handed to the
-            development team as a product, now being tested on visuals for a colorectal cancer asset.
+            <strong>Brief:</strong> Benchmarked 20+ AI image-generation tools for a top-10 pharma client
+            paying ~$20K per mechanism-of-action (MoA) visual; shortlisted Gemini and GPT, built the prompt
+            library and trained the team. Saving ~$80K a year, cutting briefing time ~25%, and now a
+            product in testing on a colorectal cancer asset.
           </p>
 
           <div class="scqa">
             <div class="scqa-row">
               <div class="scqa-label">Situation</div>
               <div class="scqa-body">
-                MoA visuals are the workhorse illustration of pharma medical communications: they show how a
-                drug acts on its target and appear in MSL decks, congress posters, training materials and
-                HCP-facing content. The client was commissioning each one from specialist medical
-                illustrators at roughly $20K per visual, with weeks of briefing and revision cycles behind
-                every image. Generative image tools had become good enough to raise an obvious question:
-                could they produce MoA visuals of acceptable scientific quality, and if so, which tool and
-                how?
+                <ul>
+                  <li>MoA visuals show how a drug acts on its target; they appear in MSL decks, congress posters, training and HCP content.</li>
+                  <li>Client commissioned each from specialist medical illustrators at ~$20K per visual, with weeks of briefing and revision.</li>
+                  <li>Generative image tools had become good enough to ask: can they produce scientifically acceptable MoA visuals, and if so which tool, and how?</li>
+                </ul>
               </div>
             </div>
             <div class="scqa-row">
               <div class="scqa-label">Complication</div>
               <div class="scqa-body">
-                Generic image quality was not the problem; scientific fidelity was. Off-the-shelf tools
-                drew receptors and signalling cascades that looked plausible but were wrong, garbled the
-                text labels that MoA visuals depend on, and could not hold a consistent style across a
-                series of images for the same asset. There were more than twenty candidate tools with no
-                standard way to compare them, the results were highly sensitive to how the prompt was
-                written, and the client's medical, legal and regulatory review meant any error would be
-                caught late and expensively. Even with the right tool, the medical writers who would use it
-                had no prompt-engineering experience, so a recommendation alone would not change anything.
+                <ul>
+                  <li>Generic image quality was not the problem; scientific fidelity was: plausible-looking but wrong receptors and cascades, garbled text labels, inconsistent style across a series.</li>
+                  <li>20+ candidate tools and no standard way to compare them; output highly sensitive to prompt wording.</li>
+                  <li>Client's medical, legal and regulatory review would catch errors late and expensively.</li>
+                  <li>Medical writers who would use the tool had no prompt-engineering experience; a recommendation alone would change nothing.</li>
+                </ul>
               </div>
             </div>
             <div class="scqa-row">
               <div class="scqa-label">Solution</div>
               <div class="scqa-body">
                 <ol>
-                  <li>Built an assessment framework for scientific image generation: scientific accuracy, text rendering, ease and reproducibility of prompting, stylistic consistency, iteration speed and cost.</li>
-                  <li>Ran 20+ image-generation tools through the framework on the same set of MoA briefs and shortlisted two, Gemini and GPT, as fit for purpose.</li>
-                  <li>Wrote the prompt library and testing guide: structured prompt templates for MoA visuals that encode the scientific content, labelling and style the client's reviewers expect.</li>
-                  <li>Delivered prompt-engineering training to the medical writing team so they could brief and iterate visuals themselves rather than routing every image through an illustrator.</li>
-                  <li>Handed the framework and prompt library to the development team as the specification for a product: enter an asset, retrieve MoA steps from PubMed, generate a structured prompt with an LLM, review it, and generate the visuals.</li>
+                  <li>Built an assessment framework: scientific accuracy, text rendering, ease and reproducibility of prompting, stylistic consistency, iteration speed, cost.</li>
+                  <li>Ran 20+ tools through the framework on the same MoA briefs; shortlisted Gemini and GPT.</li>
+                  <li>Wrote the prompt library and testing guide: structured templates encoding the scientific content, labelling and style reviewers expect.</li>
+                  <li>Delivered prompt-engineering training to the medical writing team so they could brief and iterate visuals themselves.</li>
+                  <li>Handed framework and prompt library to the development team as the product specification.</li>
                 </ol>
               </div>
             </div>
             <div class="scqa-row">
               <div class="scqa-label">Impact</div>
               <div class="scqa-body">
-                The shortlisted tools and prompt library are replacing the $20K-per-visual spend, saving
-                the client roughly $80K a year, and briefing time for a new visual is down by about 25%.
-                The work has moved from assessment into product: the development team has built the MoA
-                Image Generator on the prompt library, and it is now in testing on visuals for a colorectal
-                cancer asset.
+                <ul>
+                  <li>Replacing the $20K-per-visual spend; ~$80K saved per year.</li>
+                  <li>Briefing time per visual down ~25%.</li>
+                  <li>Now a product: the MoA Image Generator takes an asset name, pulls MoA steps from PubMed, drafts a structured prompt with an LLM for review, and generates the visuals. In testing on a colorectal cancer asset.</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -1124,11 +1129,6 @@
               <div class="stat-label">less briefing time per visual</div>
             </div>
           </div>
-          <p class="project-note">
-            <strong>What it became:</strong> a product. The MoA Image Generator takes an asset name, pulls
-            the mechanism steps from PubMed, drafts a structured image prompt with an LLM for the user to
-            review, and generates the visuals, currently being tested for a colorectal cancer asset.
-          </p>
         </div>
 
         <aside class="context-panel">
@@ -1138,11 +1138,22 @@
             </summary>
             <div class="context-body">
               <h5>What an MoA visual is</h5>
-              <p>A mechanism-of-action illustration shows how a drug works at the molecular or cellular level: the target it binds, the pathway it blocks or activates, and the downstream effect on the disease. In pharma medical communications they are everywhere, from MSL slide decks and congress posters to HCP education and internal training, and they have to be scientifically defensible because they pass through medical, legal and regulatory (MLR) review before use.</p>
+              <ul>
+                <li>Illustrates how a drug works at the molecular or cellular level: target bound, pathway blocked or activated, downstream effect on disease.</li>
+                <li>Used across MSL decks, congress posters, HCP education and internal training.</li>
+                <li>Must survive medical, legal and regulatory (MLR) review before use.</li>
+              </ul>
               <h5>Why they cost so much</h5>
-              <p>Each visual is traditionally commissioned from a specialist medical illustrator, briefed by a medical writer, and revised over several rounds with scientific reviewers. The cost is driven less by drawing than by the accuracy and review burden, which is why a single image can run to $20K and several weeks.</p>
+              <ul>
+                <li>Commissioned from specialist medical illustrators, briefed by a medical writer, revised over several rounds with scientific reviewers.</li>
+                <li>Cost is driven by accuracy and review burden, not drawing: a single image can run to $20K and several weeks.</li>
+              </ul>
               <h5>Why generative AI struggles</h5>
-              <p>Image models are trained on general imagery, not validated biology, so they produce plausible-looking but incorrect receptors, pathways and cell structures; they have historically rendered text labels poorly; and they struggle to keep a consistent style across a series. Getting usable output depends on highly structured prompting and a review step, which is why tool selection, a prompt library and training mattered as much as the model itself.</p>
+              <ul>
+                <li>Models are trained on general imagery, not validated biology: plausible but incorrect receptors, pathways and cell structures.</li>
+                <li>Historically poor text-label rendering; hard to keep a consistent style across a series.</li>
+                <li>Usable output depends on structured prompting plus a review step, so tool choice, a prompt library and training matter as much as the model.</li>
+              </ul>
             </div>
           </details>
         </aside>
