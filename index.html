@@ -354,6 +354,194 @@
       box-shadow: var(--shadow);
       display: block;
     }
+    .project-card + .project-card { margin-top: 20px; }
+    details.project-card { padding: 0; }
+    details.project-card summary::-webkit-details-marker { display: none; }
+    .project-summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 36px 40px 28px;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .project-summary:hover { background: rgba(217, 138, 95, 0.05); }
+    .project-summary .project-impact { margin-bottom: 0; }
+    .summary-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-deep);
+      background: var(--surface);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .project-summary:hover .summary-toggle { border-color: var(--accent); }
+    .summary-toggle::after {
+      content: '';
+      width: 7px; height: 7px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+      transition: transform 0.2s;
+    }
+    details[open] .summary-toggle::after { transform: rotate(-135deg) translateY(-1px); }
+    .toggle-close { display: none; }
+    details[open] .toggle-open { display: none; }
+    details[open] .toggle-close { display: inline; }
+    .project-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 36px;
+      align-items: start;
+      padding: 0 40px 40px;
+      border-top: 1px solid var(--line);
+    }
+    .project-body .project-main { padding-top: 8px; }
+    .project-body .scqa { margin-top: 20px; }
+    .project-body .context-panel { padding-top: 28px; }
+    .scqa { margin-top: 24px; }
+    .scqa-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+    .scqa-row:last-child { border-bottom: 1px solid var(--line); }
+    .scqa-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 3px;
+    }
+    .scqa-body {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+    .scqa-body ol,
+    .scqa-body ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .scqa-body li { margin-bottom: 6px; }
+    .scqa-body li:last-child { margin-bottom: 0; }
+    .scqa-body ul li::marker { color: var(--accent); }
+    @media (max-width: 820px) {
+      .scqa-row { grid-template-columns: 1fr; gap: 6px; }
+    }
+
+    /* Collapsible context panel on the right of an open case */
+    .context-panel { position: sticky; top: 90px; }
+    .context-panel details {
+      background: var(--bg-alt);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .context-panel details[open] { border-color: var(--accent-soft); }
+    .context-panel summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      user-select: none;
+    }
+    .context-panel summary::-webkit-details-marker { display: none; }
+    .context-panel summary .ctx-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .context-panel summary .ctx-hint {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 3px;
+    }
+    .context-panel details[open] summary .ctx-hint { display: none; }
+    .context-panel summary::after {
+      content: '+';
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--accent-deep);
+      flex-shrink: 0;
+    }
+    .context-panel details[open] summary::after { content: '\2212'; }
+    .context-body {
+      padding: 0 18px 18px;
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      border-top: 1px solid var(--line);
+    }
+    .context-body h5 {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 16px 0 6px;
+    }
+    .context-body p { margin-bottom: 8px; }
+    .context-body p:last-child { margin-bottom: 0; }
+    .context-body ul { margin: 0; padding-left: 16px; }
+    .context-body li { margin-bottom: 5px; }
+    .context-body li::marker { color: var(--accent); }
+    .context-body .ctx-source {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    @media (max-width: 820px) {
+      .project-body { grid-template-columns: 1fr; gap: 24px; padding: 0 24px 28px; }
+      .project-summary { padding: 28px 24px 24px; }
+      .context-panel { position: static; padding-top: 0; }
+    }
+    .project-impact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 22px 0 18px;
+    }
+    .impact-stat {
+      background: var(--bg-alt);
+      border-radius: 10px;
+      padding: 14px 18px;
+      min-width: 150px;
+      flex: 1 1 150px;
+    }
+    .impact-stat .stat-value {
+      font-family: 'Fraunces', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--accent-deep);
+      line-height: 1.1;
+    }
+    .impact-stat .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
     .project-tag {
       display: inline-block;
       background: var(--bg-alt);
@@ -558,7 +746,7 @@
       .hero-photo { margin: 0 auto; max-width: 280px; }
       .about-grid { grid-template-columns: 1fr; gap: 30px; }
       .edu-grid { grid-template-columns: 1fr; }
-      .project-card { grid-template-columns: 1fr; padding: 28px; gap: 28px; }
+      .project-card { padding: 0; }
       section.block { padding: 60px 0; }
       .nav-links { display: none; }
       .contact-box { padding: 32px 24px; }
@@ -726,24 +914,850 @@
         <h2>Projects</h2>
         <span class="section-no">03 / Projects</span>
       </div>
-      <div class="project-card">
-        <div>
-          <span class="project-tag">Full-stack · Med Comms</span>
-          <h3>MoA Image Generator</h3>
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
+          <span class="project-tag">Krystelis · Medical Affairs · KOL Engagement · AI-enabled</span>
+
+          <h3>KOL Profiling Engine for an IBD Advisory Board</h3>
+
           <p class="project-sub">
-            A full-stack tool for Med Comms teams to generate Mechanism of Action (MoA)
-            scientific illustrations for pharmaceutical assets — combining PubMed research,
-            LLM prompt engineering, and image generation in one workflow.
+            <strong>Brief:</strong> Profiled 51 IBD key opinion leaders across US and ex-US markets for a
+            pharma advisory board and recommended its strategic discussion themes. Delivered in 15 days
+            against a two-month manual baseline; now being built into Lucid's Fusion platform.
           </p>
-          <ol class="project-workflow">
-            <li>Enter a pharmaceutical asset name (e.g. <em>semaglutide</em>, <em>pembrolizumab</em>).</li>
-            <li>The app queries PubMed for relevant MoA steps.</li>
-            <li>Select an LLM (Anthropic / OpenAI / Gemini) to write a structured image prompt.</li>
-            <li>Review and edit the prompt before image generation.</li>
-            <li>Select an image generation model (DALL·E 3 / Imagen 3) and generate 2–3 images.</li>
-          </ol>
+
+
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">51</div>
+              <div class="stat-label">KOL profiles, US &amp; ex-US</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">15 days</div>
+              <div class="stat-label">vs. 2-month manual baseline</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~75%</div>
+              <div class="stat-label">reduction in effort</div>
+            </div>
+          </div>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
+
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Pharma client preparing an advisory board for an asset in inflammatory bowel disease.</li>
+                  <li>IBD is one of the most crowded fields in immunology: 10+ advanced therapies, no biomarker to predict response.</li>
+                  <li>Live KOL debates are about sequencing, how early and aggressively to treat, and safety trade-offs between classes.</li>
+                  <li>Client needed to know where each expert stood on those debates, not just who they were.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Data scattered: H1 for clinical and publication records; congress activity (ECCO, DDW, UEG Week), social media and recent positions spread across LinkedIn, X and journal sites.</li>
+                  <li>Manual profiling of 51 KOLs was a two-month job, with inconsistent output across analysts.</li>
+                  <li>Client wanted an agenda, not a directory: the 51 profiles had to be synthesised, not just described.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li>Designed a standard profile template: clinical focus, institutional role, publication themes, congress activity, digital voice, stated positions on the asset and indication.</li>
+                  <li>Pulled core profiles and publications from H1; used Claude Cowork to extract and structure social and congress activity against the template, with human QC on every profile.</li>
+                  <li>Synthesised across all 51 to surface recurring themes, disagreements and emerging topics; translated them into ad-board discussion themes, each mapped to the KOLs most likely to drive it.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>15 days of effort vs. a two-month baseline (~75% faster).</li>
+                  <li>51 consistent, evidence-backed profiles and an ad-board agenda grounded in what the experts are actually saying.</li>
+                  <li>Template and workflow being productised into Lucid's Fusion platform for asset- and indication-tailored KOL profiles.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Disease context<span class="ctx-hint">Tap to open: what IBD is and how it is treated</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>What IBD is</h5>
+              <ul>
+                <li>Two chronic, relapsing gut conditions: Crohn's disease and ulcerative colitis (UC).</li>
+                <li>Driven by an exaggerated immune response to the gut microbiome in genetically susceptible people.</li>
+                <li>Onset typically in the 20s–30s; no cure; ~7 million patients worldwide; goal is to induce and hold remission for decades.</li>
+              </ul>
+              <h5>Crohn's vs. UC</h5>
+              <ul>
+                <li>UC: continuous inflammation confined to the colon lining; colectomy is curative but life-altering.</li>
+                <li>Crohn's: patchy, anywhere mouth to anus, through the full bowel wall; strictures, fistulas and abscesses; surgery common but not curative.</li>
+                <li>UC is usually the proof-of-concept indication for a new mechanism; Crohn's follows 1–2 years later.</li>
+              </ul>
+              <h5>Treatment landscape</h5>
+              <ul>
+                <li>Base: 5-ASAs, steroids, immunomodulators.</li>
+                <li>Advanced: anti-TNFs (now biosimilar), anti-integrin vedolizumab, IL-23 inhibitors (current growth engine), oral JAK and S1P drugs.</li>
+                <li>Pipeline: anti-TL1A antibodies and obefazimod in phase 3.</li>
+                <li>Most monotherapies plateau at 30–40% remission, which drives the sequencing and combination debates.</li>
+              </ul>
+            </div>
+          </details>
+        </aside>
         </div>
-      </div>
+      </details>
+
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
+          <span class="project-tag">Krystelis · In-licensing Due Diligence · Immunology · HS &amp; axSpA · Ongoing strategic support</span>
+
+          <h3>Asset Due Diligence</h3>
+
+          <p class="project-sub">
+            <strong>Brief:</strong> Evaluated two early-stage bispecific antibodies, TNF &times; IL-17A/F
+            and TL1A &times; IL-17A, for hidradenitis suppurativa (HS) and axial spondyloarthritis (axSpA)
+            on behalf of a biotech client building its pipeline through in-licensing. Client signed
+            non-binding term sheets on both assets and has since closed its Series B.
+          </p>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
+
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Biotech client that builds its pipeline by in-licensing rather than in-house discovery; we provide ongoing strategic support on asset evaluation.</li>
+                  <li>Two early-stage bispecifics identified, each pairing IL-17A with a second validated axis, aimed at HS and axSpA.</li>
+                  <li>Both indications have hit a response ceiling with single-target biologics; dual-cytokine bispecifics are the industry's bet on moving it.</li>
+                  <li>Before a term sheet, client needed: scientific credibility, differentiation vs. incumbents and competitors, and the indications where each asset could win.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Early-stage assets, so the case had to be built from component evidence.</li>
+                  <li>TNF &times; IL-17A/F: strong rationale (both pathways proven in HS and axSpA) but poor precedent; earlier TNF &times; IL-17 bispecifics stalled at phase 2, one for failing to beat adalimumab, one on safety.</li>
+                  <li>TL1A &times; IL-17A: attractive biology (TL1A amplifies Th17; possible anti-fibrotic effect on HS tunnels) but TL1A is only validated in IBD; no human data in HS or axSpA.</li>
+                  <li>Class safety signals: IL-17 blockade can trigger candidiasis and flare IBD, relevant given gut inflammation in axSpA and HS populations; dual blockade has historically added infection risk.</li>
+                  <li>Dense competition: an IL-17A/F antibody already approved in both indications; IL-17, IL-1 and JAK programmes in late-stage HS trials; big-pharma TL1A programmes that could expand beyond IBD.</li>
+                  <li>No like-for-like benchmark: trials used different endpoints (HiSCR, ASAS40), populations and durations.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li>Mapped MoA and target biology for TNF, IL-17A/F and TL1A, including where pathways converge or could undermine each other.</li>
+                  <li>Built an indication-by-target evidence matrix: proven, failed, open, across HS, axSpA and adjacent indications.</li>
+                  <li>Assessed scientific differentiation vs. incumbents; mapped every competitor programme by target, modality and stage.</li>
+                  <li>Normalised efficacy and safety benchmarks across pivotal trials and compared study designs so results read like-for-like.</li>
+                  <li>Reviewed class and combination safety signals, using discontinued dual-cytokine programmes as precedents.</li>
+                  <li>Profiled every approved and discontinued asset per target, with reasons for discontinuation.</li>
+                  <li>Recommended where each asset's dual-target rationale is strongest and what it must demonstrate to be differentiated.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Client moved forward on both assets: non-binding term sheets signed to in-license the TNF &times; IL-17A/F and TL1A &times; IL-17A bispecifics.</li>
+                  <li>Client has since closed its Series B with those assets in the pipeline story.</li>
+                  <li>Evidence matrix, competitor map and benchmark structure now the standing framework for the client's subsequent asset reviews; engagement continues.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Disease &amp; market context<span class="ctx-hint">Tap to open: the immunology market, HS and axSpA</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>Why bispecifics, why now</h5>
+              <ul>
+                <li>Immunology is the largest therapeutic market after oncology.</li>
+                <li>Anti-TNFs that built the market are now biosimilar; growth comes from IL-17, IL-23 and oral JAKs.</li>
+                <li>Bispecifics that block two cytokines at once are the next wave, aimed at a response ceiling single-target drugs have not moved in a decade.</li>
+              </ul>
+              <h5>Hidradenitis suppurativa</h5>
+              <ul>
+                <li>Chronic, painful inflammatory skin disease: blocked, inflamed hair follicles in armpits, groin and buttocks form recurring abscesses and tunnels.</li>
+                <li>~1% prevalence; typically diagnosed 7–10 years late.</li>
+                <li>Adalimumab was the only approved biologic until 2023; IL-17 antibodies since added; ~half of patients still miss a meaningful response (HiSCR).</li>
+                <li>Crowded pipeline: IL-17, IL-1 and JAK programmes.</li>
+              </ul>
+              <h5>Axial spondyloarthritis</h5>
+              <ul>
+                <li>Chronic inflammatory arthritis of the spine and sacroiliac joints; strongly HLA-B27-linked; starts in young adults; can progress to spinal fusion.</li>
+                <li>TNF blockers the backbone since the early 2000s; IL-17 antibodies and JAK inhibitors added.</li>
+                <li>IL-23 blockade works in psoriasis and Crohn's but failed in axSpA: pathways don't transfer between indications automatically.</li>
+                <li>Standard efficacy endpoint: ASAS40.</li>
+              </ul>
+            </div>
+          </details>
+        </aside>
+        </div>
+      </details>
+
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
+          <span class="project-tag">Krystelis · Market Access · Patient Insights · Diagnostics Launch</span>
+
+          <h3>Integrated Disease Ecosystem Map: Alzheimer's</h3>
+
+          <p class="project-sub">
+            <strong>Brief:</strong> Built an outside-in map of the Alzheimer's disease ecosystem for a
+            blood-based biomarker launch: care pathways and where the biomarker fits, patient personas from
+            social listening and literature, and a patient-funnel model sizing the US biomarker opportunity
+            with scenario analysis to support the client's market access strategy. The client adopted the
+            AI-enabled persona approach and is now extending the map across patient, clinician, payer,
+            societal and technology perspectives.
+          </p>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
+
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Client preparing to launch a blood-based biomarker for Alzheimer's disease into the US market.</li>
+                  <li>Anti-amyloid therapies had made biological confirmation of Alzheimer's a gate to treatment, and the existing routes, amyloid PET and CSF, were expensive, invasive and capacity-constrained.</li>
+                  <li>A blood test could move confirmation earlier and into primary care, but the client needed an outside-in view: how patients actually travel through the system, where a blood test would slot in, who the patients are, and how large the realistic US opportunity was.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>No single source describes the pathway: diagnosis is spread across primary care, memory clinics, neurology and geriatrics, with long and variable delays between first symptoms and a confirmed diagnosis.</li>
+                  <li>Published epidemiology counts prevalence, not the funnel: who presents, who gets screened, who is referred and who reaches a biomarker test are all different, smaller numbers.</li>
+                  <li>Patient voice is scattered across forums, social media and advocacy groups, with caregivers often speaking for patients.</li>
+                  <li>The market was moving as we worked: the first blood-based tests were reaching FDA clearance, and guidelines on their use were still forming, so the sizing had to hold under several adoption scenarios rather than one.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li>Mapped the current US care pathway end to end, from first symptoms and primary-care screening through specialist referral, amyloid confirmation and treatment eligibility, and marked the decision points where a blood-based biomarker could replace or precede PET and CSF.</li>
+                  <li>Built five AI-enabled patient personas from social listening, selected literature and expert interviews, covering stage of disease, how they entered the system, caregiver involvement and attitudes to testing.</li>
+                  <li>Modelled the patient funnel: US population at risk, prevalence of cognitive impairment, share presenting to care, screened, referred, biomarker-eligible, tested and amyloid-positive, with each conversion rate sourced and flagged by confidence.</li>
+                  <li>Ran scenario analysis on the levers the client could influence or needed to plan for: primary-care vs. specialist adoption, reimbursement timing, and uptake of anti-amyloid therapy.</li>
+                  <li>Delivered the ecosystem map and the funnel model as the evidence base for the client's market access strategy.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Client received a single, sourced view of the disease ecosystem: where patients are lost, where a blood test adds the most value, and who the realistic early adopters are.</li>
+                  <li>Funnel model gave a defensible US opportunity range with the assumptions exposed, replacing top-down prevalence-based sizing.</li>
+                  <li>Client adopted the AI-enabled persona approach as its method for patient insight.</li>
+                  <li>The ecosystem map is now being extended into a multi-stakeholder view of the pathway, from patient, clinician, payer, societal and technology perspectives, with our ongoing support.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Disease &amp; market context<span class="ctx-hint">Tap to open: Alzheimer's, blood biomarkers and the US market</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>Alzheimer's disease</h5>
+              <ul>
+                <li>Progressive neurodegenerative disease; the most common cause of dementia.</li>
+                <li>Defined biologically by amyloid plaques and tau tangles, which build up 10–20 years before symptoms.</li>
+                <li>~7.4 million Americans aged 65+ live with Alzheimer's dementia (2026); many more are in the pre-symptomatic or mild cognitive impairment (MCI) stages.</li>
+              </ul>
+              <h5>Why biomarkers matter now</h5>
+              <ul>
+                <li>Anti-amyloid antibodies (lecanemab 2023, donanemab 2024) require confirmed amyloid pathology before treatment.</li>
+                <li>Confirmation has relied on amyloid PET (costly, limited scanner capacity) or CSF via lumbar puncture (invasive).</li>
+                <li>Blood tests measuring p-tau217 and amyloid ratios now approach PET-level accuracy; the first was FDA-cleared in 2025.</li>
+              </ul>
+              <h5>US market signals</h5>
+              <ul>
+                <li>Global blood-based Alzheimer's biomarker diagnostics market: ~$170M in 2025, projected to reach ~$840M by 2035 (~17% CAGR), with North America holding ~40% share.</li>
+                <li>Biomarker testing among Americans 55+ grew 37.5x between 2023 and 2025 following FDA clearance of blood tests.</li>
+                <li>17% of newly diagnosed Alzheimer's patients had a biomarker test within six months of diagnosis in 2025, up from under 1% in 2023.</li>
+                <li>Diagnoses are shifting earlier: MCI diagnosis rates more than doubled between 2020 and 2025.</li>
+              </ul>
+              <p class="ctx-source">Sources: Towards Healthcare (2026); Trilliant Health (2026).</p>
+            </div>
+          </details>
+        </aside>
+        </div>
+      </details>
+
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
+          <span class="project-tag">Krystelis · Med Comms · GenAI Tool Assessment · Product Development</span>
+
+          <h3>MoA Image Generator</h3>
+
+          <p class="project-sub">
+            <strong>Brief:</strong> Benchmarked 20+ AI image-generation tools for a top-10 pharma client
+            paying ~$20K per mechanism-of-action (MoA) visual; shortlisted Gemini and GPT, built the prompt
+            library and trained the team. Saving ~$80K a year, cutting briefing time ~25%, and now a
+            product in testing on a colorectal cancer asset.
+          </p>
+
+
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">20+</div>
+              <div class="stat-label">AI tools benchmarked</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~$80K</div>
+              <div class="stat-label">saved per year vs. $20K per visual</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~25%</div>
+              <div class="stat-label">less briefing time per visual</div>
+            </div>
+          </div>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
+
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>MoA visuals show how a drug acts on its target; they appear in MSL decks, congress posters, training and HCP content.</li>
+                  <li>Client commissioned each from specialist medical illustrators at ~$20K per visual, with weeks of briefing and revision.</li>
+                  <li>Generative image tools had become good enough to ask: can they produce scientifically acceptable MoA visuals, and if so which tool, and how?</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Generic image quality was not the problem; scientific fidelity was: plausible-looking but wrong receptors and cascades, garbled text labels, inconsistent style across a series.</li>
+                  <li>20+ candidate tools and no standard way to compare them; output highly sensitive to prompt wording.</li>
+                  <li>Client's medical, legal and regulatory review would catch errors late and expensively.</li>
+                  <li>Medical writers who would use the tool had no prompt-engineering experience; a recommendation alone would change nothing.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li>Built an assessment framework: scientific accuracy, text rendering, ease and reproducibility of prompting, stylistic consistency, iteration speed, cost.</li>
+                  <li>Ran 20+ tools through the framework on the same MoA briefs; shortlisted Gemini and GPT.</li>
+                  <li>Wrote the prompt library and testing guide: structured templates encoding the scientific content, labelling and style reviewers expect.</li>
+                  <li>Delivered prompt-engineering training to the medical writing team so they could brief and iterate visuals themselves.</li>
+                  <li>Handed framework and prompt library to the development team as the product specification.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Replacing the $20K-per-visual spend; ~$80K saved per year.</li>
+                  <li>Briefing time per visual down ~25%.</li>
+                  <li>Now a product: the MoA Image Generator takes an asset name, pulls MoA steps from PubMed, drafts a structured prompt with an LLM for review, and generates the visuals. In testing on a colorectal cancer asset.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Domain context<span class="ctx-hint">Tap to open: what MoA visuals are and why AI struggles with them</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>What an MoA visual is</h5>
+              <ul>
+                <li>Illustrates how a drug works at the molecular or cellular level: target bound, pathway blocked or activated, downstream effect on disease.</li>
+                <li>Used across MSL decks, congress posters, HCP education and internal training.</li>
+                <li>Must survive medical, legal and regulatory (MLR) review before use.</li>
+              </ul>
+              <h5>Why they cost so much</h5>
+              <ul>
+                <li>Commissioned from specialist medical illustrators, briefed by a medical writer, revised over several rounds with scientific reviewers.</li>
+                <li>Cost is driven by accuracy and review burden, not drawing: a single image can run to $20K and several weeks.</li>
+              </ul>
+              <h5>Why generative AI struggles</h5>
+              <ul>
+                <li>Models are trained on general imagery, not validated biology: plausible but incorrect receptors, pathways and cell structures.</li>
+                <li>Historically poor text-label rendering; hard to keep a consistent style across a series.</li>
+                <li>Usable output depends on structured prompting plus a review step, so tool choice, a prompt library and training matter as much as the model.</li>
+              </ul>
+            </div>
+          </details>
+        </aside>
+        </div>
+      </details>
+
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
+          <span class="project-tag">Krystelis · Clinical Operations · Quality Management · Process &amp; Change</span>
+
+          <h3>Clinical Development Quality Management Implementation</h3>
+
+          <p class="project-sub">
+            <strong>Brief:</strong> Supported the redesign and implementation of a pharma client's
+            clinical development SOPs, replacing overlapping procedures, unclear roles and duplicated
+            sponsor-CRO documentation with a single ICH-GCP-aligned set covering study start-up,
+            data monitoring, oversight and close-out. Authored 10+ SOPs with 50+ stakeholders, saving
+            roughly 11 hours per FTE per year.
+          </p>
+
+
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">10+</div>
+              <div class="stat-label">SOPs authored, ICH-GCP aligned</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">50+</div>
+              <div class="stat-label">stakeholders engaged</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~11 hrs</div>
+              <div class="stat-label">saved per FTE per year</div>
+            </div>
+          </div>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
+
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Pharma client running clinical development largely through CROs, with a quality management system that had grown procedure by procedure over years.</li>
+                  <li>Regulators expect the sponsor to demonstrate oversight of outsourced work and risk-based quality management, and the client's SOPs needed to show that clearly.</li>
+                  <li>Client engaged us to revise the SOP set and support its rollout across clinical operations.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Overlapping SOPs: the same activity described in several documents, sometimes with different steps.</li>
+                  <li>Unclear roles and responsibilities between functions, and between sponsor and CRO, so handoffs and sign-offs were negotiated study by study.</li>
+                  <li>Duplication between CRO and sponsor documentation: work recorded twice, reconciled by hand, and never fully trusted.</li>
+                  <li>Inconsistent ways of working across teams and studies, which is what inspectors read as weak oversight.</li>
+                  <li>Fifty-plus stakeholders across clinical operations, data management, quality and vendor management, each with a stake in how their process was written down.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li>Mapped the existing SOP landscape against the clinical development lifecycle to expose overlaps, gaps and contradictions.</li>
+                  <li>Defined the target process architecture: one SOP per process, aligned to ICH-GCP, with sponsor and CRO responsibilities drawn explicitly at each step.</li>
+                  <li>Authored 10+ revised SOPs covering study start-up, data monitoring, sponsor oversight of CROs, and study close-out, working through drafts with process owners.</li>
+                  <li>Ran stakeholder workshops and reviews with 50+ people to agree roles, remove duplicated documentation and settle a single way of working per process.</li>
+                  <li>Supported implementation: training, transition from old to new procedures, and the controlled retirement of superseded SOPs.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Roughly 11 hours saved per FTE per year, from removed duplication and fewer reconciliations between sponsor and CRO records.</li>
+                  <li>One ICH-GCP-aligned SOP set with explicit roles, replacing the overlapping procedures it superseded.</li>
+                  <li>Clearer, documentable sponsor oversight of outsourced studies, the thing inspectors look for first.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Domain context<span class="ctx-hint">Tap to open: SOPs, GCP and sponsor oversight</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>Quality management in clinical development</h5>
+              <ul>
+                <li>A sponsor's quality management system (QMS) is the set of policies, SOPs and records that show trials are run to protocol and to Good Clinical Practice (GCP).</li>
+                <li>SOPs are the operating layer: how a study is started, how data are monitored, how vendors are overseen, how a study is closed.</li>
+                <li>Inspectors (FDA, EMA, MHRA) audit against the sponsor's own SOPs, so a contradictory SOP set is a finding waiting to happen.</li>
+              </ul>
+              <h5>Sponsor vs. CRO</h5>
+              <ul>
+                <li>Sponsors can outsource trial activities to CROs, but under ICH GCP the sponsor keeps ultimate responsibility for data quality and participant safety.</li>
+                <li>That means the sponsor must document oversight of CRO work, not just receive it, which is where duplicated records and unclear roles cause the most trouble.</li>
+              </ul>
+              <h5>Why SOPs are being rewritten now</h5>
+              <ul>
+                <li>ICH E6(R3), the revised GCP guideline finalised in 2025, puts risk-based quality management, proportionality and sponsor oversight at the centre.</li>
+                <li>Industry is moving from "monitor everything" to risk-based quality management (RBQM), which changes how data monitoring and oversight SOPs are written.</li>
+              </ul>
+            </div>
+          </details>
+        </aside>
+        </div>
+      </details>
+
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
+          <span class="project-tag">Krystelis · Internal Initiative · AI Adoption · Productisation</span>
+
+          <h3>Data, Tech &amp; AI Guild</h3>
+
+          <p class="project-sub">
+            <strong>Brief:</strong> Lead a nine-member internal guild driving AI adoption at Krystelis and
+            turning project IP into reusable products for the Lucid portfolio. Current workstreams: scaling
+            AI-led persona creation into a product, building a Market Archetype agent that unifies WHO, World
+            Bank, OECD and internal market data, and piloting LinkedIn sales automation with social
+            listening-tailored outreach to 1,000+ contacts. Trained ~20 colleagues on prompt engineering,
+            custom GPTs and low-code Python apps along the way.
+          </p>
+
+
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">9</div>
+              <div class="stat-label">guild members led</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~20</div>
+              <div class="stat-label">colleagues trained on AI tools</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">1,000+</div>
+              <div class="stat-label">contacts in tailored-outreach pilot</div>
+            </div>
+          </div>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
+
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Consulting margins depend on how much of each engagement can be reused; most of our IP was leaving in slide decks.</li>
+                  <li>Generative and agentic AI made it possible to turn recurring workstreams (personas, market landscapes, outreach) into tools rather than rebuilding them per project.</li>
+                  <li>Adoption across the firm was uneven: a few enthusiasts, no shared tooling, and most consultants had not used AI beyond a chat window.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Pharma clients hold us to a higher evidence bar than generic AI output meets: personas and market data must be sourced, traceable and defensible.</li>
+                  <li>Market intelligence lives in incompatible silos (WHO, World Bank, OECD, internal research) with different geographies, units and update cycles.</li>
+                  <li>Business development was manual and generic; personalising outreach at scale without sounding automated is the hard part.</li>
+                  <li>Guild members had day jobs on client work, so everything had to be built incrementally and prove value early to keep its sponsorship.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li><strong>AI-led persona creation:</strong> generalising the method proven on the Alzheimer's engagement (social listening, literature, expert input, LLM synthesis) into a repeatable, sourced persona generator; being scaled into the Lucid product portfolio.</li>
+                  <li><strong>Market Archetype agent:</strong> an agent that pulls quantitative and qualitative data on any market from WHO, World Bank, OECD and internal sources into one consistent profile, so a market landscape starts from a verified baseline rather than a blank page.</li>
+                  <li><strong>LinkedIn sales automation pilot:</strong> social listening to identify what 1,000+ contacts are posting and engaging with, then tailored outreach messages generated per contact, with human review before anything is sent.</li>
+                  <li><strong>Capability building:</strong> trained ~20 colleagues on prompt engineering, custom GPTs, skills and low-code Python apps, so the tools are used by the people who do the work, not only by the guild.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>AI-led personas adopted by a client and on the path into the Lucid product portfolio.</li>
+                  <li>Market Archetype agent in build; LinkedIn automation in pilot with 1,000+ contacts.</li>
+                  <li>Roughly 20 colleagues using AI tools independently in client work.</li>
+                  <li>Guild has become the route by which project IP becomes product, alongside the KOL profiling and MoA image generation work now in development.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Context<span class="ctx-hint">Tap to open: why a consultancy needs an AI guild</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>From services to products</h5>
+              <ul>
+                <li>Consulting revenue scales with headcount; product revenue does not. Firms that package recurring analysis into tools can deliver faster and defend margin.</li>
+                <li>The hard part is not building the tool but keeping it to client-grade evidence standards.</li>
+              </ul>
+              <h5>What an agent adds</h5>
+              <ul>
+                <li>A chat model answers from what it was trained on; an agent retrieves live data from named sources, reconciles it and cites it.</li>
+                <li>For market intelligence that means WHO, World Bank and OECD figures arrive already aligned on geography, year and units.</li>
+              </ul>
+              <h5>Why a guild, not a team</h5>
+              <ul>
+                <li>Members stay on client work, so adoption spreads through the practice rather than sitting in a separate function.</li>
+                <li>Training and shared tooling matter as much as any single build; the goal is that consultants use AI without the guild in the room.</li>
+              </ul>
+            </div>
+          </details>
+        </aside>
+        </div>
+      </details>
+
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
+          <span class="project-tag">Accenture · Procurement · Technology Assessment · RFI to RFP</span>
+
+          <h3>Task Mining Tool Selection for Procurement</h3>
+
+          <p class="project-sub">
+            <strong>Brief:</strong> Ran the technology assessment for a large mining company looking to
+            find automation opportunities in its procurement function: scanned emerging task-mining
+            technologies, drafted the RFI, ran vendor demos and a structured evaluation, and recommended
+            Soroco for its ability to map how work is actually done and quantify the automation gains.
+            The recommendation carried through to RFP, and the client shortlisted the tool for a pilot.
+          </p>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
+
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Global mining company with a large, transaction-heavy procurement function spread across regions and systems.</li>
+                  <li>Leadership believed there were efficiency and automation gains in source-to-pay, but had no objective picture of how the work was actually performed day to day.</li>
+                  <li>Task-mining tools, which record and analyse desktop activity to reconstruct real workflows, had matured enough to be considered; the client asked Accenture to evaluate the market and recommend one.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Fast-moving vendor landscape: process-mining incumbents adding task-mining modules, pure-play task-mining vendors, and RPA platforms bundling discovery tools, all with overlapping claims.</li>
+                  <li>Desktop recording raises data privacy and employee trust questions, so governance and anonymisation mattered as much as analytics.</li>
+                  <li>The client wanted quantified automation potential, not just process maps, which narrows the field considerably.</li>
+                  <li>Demos are designed to impress; the evaluation had to test tools against the client's own procurement scenarios, not the vendors' showcase data.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li>Scanned the emerging task-mining and process-discovery landscape and built a longlist of candidate technologies.</li>
+                  <li>Drafted the RFI around the client's requirements: process-capture depth, automation-opportunity quantification, data privacy controls, integration with the existing ERP and RPA stack, and total cost.</li>
+                  <li>Ran vendor demos and hands-on evaluations against procurement scenarios drawn from the client's own operations, scoring each tool on a weighted framework.</li>
+                  <li>Recommended Soroco: strongest at reconstructing end-to-end work patterns from desktop activity and translating them into prioritised, quantified automation opportunities.</li>
+                  <li>Carried the recommendation from RFI into the RFP stage with the business case for a pilot.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Client moved from an open question to a shortlisted tool with a pilot scope, in one structured RFI-to-RFP cycle.</li>
+                  <li>Evaluation framework gave procurement leadership a defensible, requirements-based rationale rather than a vendor-led choice.</li>
+                  <li>Built hands-on familiarity with the task-mining stack (UiPath Task Mining certified; Celonis and Signavio trained) that later fed the AI tool-assessment work at Krystelis.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </div>
+
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Domain context<span class="ctx-hint">Tap to open: task mining vs. process mining, and procurement</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>Task mining vs. process mining</h5>
+              <ul>
+                <li>Process mining reads system event logs (ERP, CRM) to reconstruct how a process flows between systems.</li>
+                <li>Task mining records user desktop activity (clicks, keystrokes, application switches) to see the manual work that happens between and inside those systems: the spreadsheets, emails and re-keying that logs never capture.</li>
+                <li>Together they show both the official process and the real one; task mining is where most automation candidates hide.</li>
+              </ul>
+              <h5>Why procurement</h5>
+              <ul>
+                <li>Source-to-pay (requisition, sourcing, purchase order, receipt, invoice, payment) is high-volume, rules-based and spread across many hands, which makes it a classic target for automation.</li>
+                <li>In mining, procurement also carries heavy spend on equipment and contractors across remote sites, so small efficiency gains compound.</li>
+              </ul>
+              <h5>RFI vs. RFP</h5>
+              <ul>
+                <li>An RFI (request for information) asks vendors what they can do and narrows a longlist; an RFP (request for proposal) asks shortlisted vendors for a priced, scoped offer.</li>
+                <li>Getting the RFI criteria right is where most of the selection is decided.</li>
+              </ul>
+            </div>
+          </details>
+        </aside>
+        </div>
+      </details>
+
+
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
+          <span class="project-tag">Accenture · Project Management · Data Migration &amp; Compliance</span>
+          <h3>Case Management System Archival</h3>
+          <p class="project-sub">
+            <strong>Brief:</strong> Project-managed the archival of 15 years of case management data from a
+            large mining company's live Microsoft Dynamics CRM-based system, moving every record older than
+            five years into a compliant archive while the system stayed in daily use. Coordinated legal,
+            IT, records management and business stakeholders to deliver a clean migration with all records
+            moved, retrievable and the retention obligations met.
+          </p>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Global mining company running case management on a Microsoft Dynamics CRM-based system that had accumulated 15 years of records.</li>
+                  <li>The system was staying live; the client's policy was that cases older than five years should leave the production system and move to an archive.</li>
+                  <li>Archived records still had to be retrievable and intact for legal, audit and regulatory purposes.</li>
+                  <li>Accenture was engaged to manage the archival end to end without disrupting day-to-day case handling.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>Archiving from a live system: the production CRM had to keep working for users while the bulk of its history was extracted, which constrained when and how data could be moved.</li>
+                  <li>A five-year cut-off sounds simple but is not: a "case" spans linked records, documents, activities and audit history, and the rule had to be applied consistently to all of them.</li>
+                  <li>Fifteen years of data meant inconsistent formats, incomplete metadata and records whose owners had long since left.</li>
+                  <li>Ownership was split: legal set retention and hold requirements, IT owned the platform, records management owned the archive, the business owned the content; no one team could sign off alone.</li>
+                  <li>Compliance was binary: lost, altered or unsearchable records would fail an audit regardless of how much was moved.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li>Built the stakeholder map and governance: a single decision forum across legal, IT, records management and the business, with clear owners for retention rules, data quality and cut-over.</li>
+                  <li>Defined the archival rules with legal and records management: how the five-year cut-off applied across linked records, what had to be retained, in what format, and how it had to be retrievable.</li>
+                  <li>Planned and tracked the migration in phases, from data profiling and cleansing through extraction from the live CRM, load to the archive, and reconciliation against the source.</li>
+                  <li>Scheduled extraction and removal windows around business use so case handling in the production system was not disrupted.</li>
+                  <li>Ran validation and reconciliation checkpoints so every record set was confirmed complete and unaltered in the archive before it was removed from production.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                <ul>
+                  <li>All case records older than five years migrated to a compliant, retrievable archive; production CRM reduced to its live five-year working set.</li>
+                  <li>Clean migration with reconciliation evidence, giving legal and audit a defensible record of what was moved and how.</li>
+                  <li>Archival rules documented as a repeatable policy, so future years can be archived the same way rather than as a one-off project.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          </div>
+          <aside class="context-panel">
+            <details>
+              <summary>
+                <span class="ctx-title">Domain context<span class="ctx-hint">Tap to open: archival, retention and why it is harder than it sounds</span></span>
+              </summary>
+              <div class="context-body">
+                <h5>What a case management system holds</h5>
+                <ul>
+                  <li>Structured records of individual cases (incidents, claims, grievances, investigations) plus their documents, correspondence and audit trail.</li>
+                  <li>In a heavy-industry company these records can carry legal, safety and regulatory weight for years after a case closes.</li>
+                </ul>
+                <h5>Why archive from a live CRM</h5>
+                <ul>
+                  <li>CRM platforms such as Microsoft Dynamics charge for storage and slow down as history accumulates; keeping 15 years of closed cases in production costs money and performance.</li>
+                  <li>Retention schedules and legal holds still require old records to be kept intact and retrievable, so the answer is an archive, not deletion.</li>
+                  <li>An archive has to preserve not just the data but its context: metadata, relationships between records, and the evidence that nothing was changed.</li>
+                </ul>
+                <h5>What "clean and compliant" means</h5>
+                <ul>
+                  <li>Clean: profiled, de-duplicated, consistently formatted data with reconciled record counts.</li>
+                  <li>Compliant: retention rules applied, access controls in place, and an audit trail of the migration itself.</li>
+                  <li>The project-management challenge is less technical than organisational: getting legal, IT, records and the business to agree and sign off together.</li>
+                </ul>
+              </div>
+            </details>
+          </aside>
+        </div>
+      </details>
     </div>
   </section>
 
