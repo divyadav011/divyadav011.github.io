@@ -1671,10 +1671,11 @@
           <span class="project-tag">Accenture · Project Management · Data Migration &amp; Compliance</span>
           <h3>Case Management System Archival</h3>
           <p class="project-sub">
-            <strong>Brief:</strong> Project-managed the archival of 15 years of case management data for a
-            large mining company ahead of the legacy system's retirement, coordinating legal, IT, records
-            management and business stakeholders across teams to deliver a clean, compliant migration with
-            all records migrated, retrievable and the retention obligations met.
+            <strong>Brief:</strong> Project-managed the archival of 15 years of case management data from a
+            large mining company's live Microsoft Dynamics CRM-based system, moving every record older than
+            five years into a compliant archive while the system stayed in daily use. Coordinated legal,
+            IT, records management and business stakeholders to deliver a clean migration with all records
+            moved, retrievable and the retention obligations met.
           </p>
           </div>
           <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
@@ -1686,9 +1687,10 @@
               <div class="scqa-label">Situation</div>
               <div class="scqa-body">
                 <ul>
-                  <li>Global mining company retiring a legacy case management system that held 15 years of records.</li>
-                  <li>The records could not simply be deleted: retention rules, potential legal holds and audit requirements meant they had to stay retrievable and intact after the system was gone.</li>
-                  <li>Accenture was engaged to manage the archival and migration end to end.</li>
+                  <li>Global mining company running case management on a Microsoft Dynamics CRM-based system that had accumulated 15 years of records.</li>
+                  <li>The system was staying live; the client's policy was that cases older than five years should leave the production system and move to an archive.</li>
+                  <li>Archived records still had to be retrievable and intact for legal, audit and regulatory purposes.</li>
+                  <li>Accenture was engaged to manage the archival end to end without disrupting day-to-day case handling.</li>
                 </ul>
               </div>
             </div>
@@ -1696,10 +1698,11 @@
               <div class="scqa-label">Complication</div>
               <div class="scqa-body">
                 <ul>
+                  <li>Archiving from a live system: the production CRM had to keep working for users while the bulk of its history was extracted, which constrained when and how data could be moved.</li>
+                  <li>A five-year cut-off sounds simple but is not: a "case" spans linked records, documents, activities and audit history, and the rule had to be applied consistently to all of them.</li>
                   <li>Fifteen years of data meant inconsistent formats, incomplete metadata and records whose owners had long since left.</li>
-                  <li>Ownership was split: legal set retention and hold requirements, IT owned the systems, records management owned the archive, and the business owned the content; no one team could sign off alone.</li>
-                  <li>Compliance was binary: a migration that lost or altered records, or made them unsearchable, would fail an audit regardless of how much was moved.</li>
-                  <li>A hard decommissioning date meant the sequencing of extraction, validation and cut-over had to hold under stakeholder delays.</li>
+                  <li>Ownership was split: legal set retention and hold requirements, IT owned the platform, records management owned the archive, the business owned the content; no one team could sign off alone.</li>
+                  <li>Compliance was binary: lost, altered or unsearchable records would fail an audit regardless of how much was moved.</li>
                 </ul>
               </div>
             </div>
@@ -1708,10 +1711,10 @@
               <div class="scqa-body">
                 <ol>
                   <li>Built the stakeholder map and governance: a single decision forum across legal, IT, records management and the business, with clear owners for retention rules, data quality and cut-over.</li>
-                  <li>Defined the archival scope and rules with legal and records management: what had to be kept, for how long, in what format, and how it had to be retrievable.</li>
-                  <li>Planned and tracked the migration in phases, from data profiling and cleansing through extraction, load to the archive, and reconciliation against the source.</li>
-                  <li>Ran validation and reconciliation checkpoints so every record set was confirmed complete and unaltered before the source was retired.</li>
-                  <li>Managed the plan, risks and dependencies across teams to the decommissioning date, escalating early when stakeholder decisions slipped.</li>
+                  <li>Defined the archival rules with legal and records management: how the five-year cut-off applied across linked records, what had to be retained, in what format, and how it had to be retrievable.</li>
+                  <li>Planned and tracked the migration in phases, from data profiling and cleansing through extraction from the live CRM, load to the archive, and reconciliation against the source.</li>
+                  <li>Scheduled extraction and removal windows around business use so case handling in the production system was not disrupted.</li>
+                  <li>Ran validation and reconciliation checkpoints so every record set was confirmed complete and unaltered in the archive before it was removed from production.</li>
                 </ol>
               </div>
             </div>
@@ -1719,8 +1722,9 @@
               <div class="scqa-label">Impact</div>
               <div class="scqa-body">
                 <ul>
-                  <li>Fifteen years of case records archived and retrievable in a compliant repository; legacy system retired.</li>
-                  <li>Clean migration with reconciliation evidence, giving legal and audit a defensible record of what was kept and how.</li>
+                  <li>All case records older than five years migrated to a compliant, retrievable archive; production CRM reduced to its live five-year working set.</li>
+                  <li>Clean migration with reconciliation evidence, giving legal and audit a defensible record of what was moved and how.</li>
+                  <li>Archival rules documented as a repeatable policy, so future years can be archived the same way rather than as a one-off project.</li>
                 </ul>
               </div>
             </div>
@@ -1737,9 +1741,10 @@
                   <li>Structured records of individual cases (incidents, claims, grievances, investigations) plus their documents, correspondence and audit trail.</li>
                   <li>In a heavy-industry company these records can carry legal, safety and regulatory weight for years after a case closes.</li>
                 </ul>
-                <h5>Why you cannot just switch it off</h5>
+                <h5>Why archive from a live CRM</h5>
                 <ul>
-                  <li>Retention schedules and legal holds require records to be kept intact and retrievable for defined periods, sometimes decades.</li>
+                  <li>CRM platforms such as Microsoft Dynamics charge for storage and slow down as history accumulates; keeping 15 years of closed cases in production costs money and performance.</li>
+                  <li>Retention schedules and legal holds still require old records to be kept intact and retrievable, so the answer is an archive, not deletion.</li>
                   <li>An archive has to preserve not just the data but its context: metadata, relationships between records, and the evidence that nothing was changed.</li>
                 </ul>
                 <h5>What "clean and compliant" means</h5>
