@@ -355,6 +355,36 @@
       display: block;
     }
     .project-card + .project-card { margin-top: 28px; }
+    .scqa { margin-top: 24px; }
+    .scqa-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+    .scqa-row:last-child { border-bottom: 1px solid var(--line); }
+    .scqa-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 3px;
+    }
+    .scqa-body {
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+    .scqa-body ol {
+      margin-top: 8px;
+      padding-left: 18px;
+    }
+    .scqa-body ol li { margin-bottom: 6px; }
+    @media (max-width: 820px) {
+      .scqa-row { grid-template-columns: 1fr; gap: 6px; }
+    }
     .project-impact {
       display: flex;
       flex-wrap: wrap;
@@ -758,19 +788,54 @@
           <span class="project-tag">Medical Affairs · KOL Engagement · AI-enabled</span>
           <h3>KOL Profiling Engine for an IBD Advisory Board</h3>
           <p class="project-sub">
-            Profiled 51 inflammatory bowel disease (Crohn's and UC) key opinion leaders across US and
-            ex-US markets for a pharma client's advisory board. IBD is one of the most crowded spaces in
-            immunology, with IL-23s, JAKs and new oral mechanisms competing on sequencing and positioning,
-            so the brief went beyond names and affiliations: where does each expert stand on those debates,
-            and who will shape the conversation about this asset?
+            <strong>Brief:</strong> Profile 51 inflammatory bowel disease (Crohn's and UC) key opinion
+            leaders across US and ex-US markets for a pharma client's advisory board, and recommend what
+            the board should discuss.
           </p>
-          <ol class="project-workflow">
-            <li>Designed a standard KOL profile template covering clinical focus, institutional role, publication themes, congress activity, digital voice and stated positions relevant to the asset and indication.</li>
-            <li>Pulled the clinical and publication backbone for all 51 KOLs from H1.</li>
-            <li>Used Claude Cowork to extract and structure social media and congress activity (ECCO, DDW, UEG Week) against the template, then reviewed and corrected outputs rather than reading 51 timelines by hand.</li>
-            <li>Synthesised across all 51 profiles to surface recurring themes, points of disagreement and emerging topics.</li>
-            <li>Proposed strategic discussion themes for the advisory board, each mapped to the KOLs most likely to drive it.</li>
-          </ol>
+
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                IBD is one of the most crowded spaces in immunology: anti-TNFs going biosimilar, IL-23
+                inhibitors fighting for first-line position, oral JAK and S1P drugs, and new mechanisms such
+                as TL1A in phase 3. With no reliable biomarker to predict response, the live debates among
+                gastroenterologists are about sequencing, how early and aggressively to treat, and safety
+                trade-offs between classes. The client needed to know not just who the experts were, but
+                where each stood on those debates and who would shape the conversation about this asset.
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                The data existed but was scattered. H1 gave the clinical and publication backbone;
+                congress presence (ECCO, DDW, UEG Week), social media activity and recent positions sat
+                across LinkedIn, X and journal sites. Done manually for 51 people this was a two-month job,
+                with inconsistent output because every analyst summarises an expert differently. And the
+                client wanted an agenda, not a directory, which meant synthesising across 51 people rather
+                than describing them one at a time.
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li>Designed a standard profile template so every KOL was captured against the same dimensions: clinical focus, institutional role, publication themes, congress activity, digital voice and stated positions relevant to the asset and indication.</li>
+                  <li>Pulled core profiles and publications from H1, then used Claude Cowork to extract and structure social media and congress activity against the template, so the work became quality control and judgement rather than reading 51 timelines by hand.</li>
+                  <li>Synthesised across all 51 profiles to surface recurring themes, points of disagreement and emerging topics, and translated them into proposed strategic discussion themes for the advisory board, each mapped to the KOLs most likely to drive it.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                Delivered in 15 days of effort against a two-month baseline. The client received 51
+                consistent, evidence-backed profiles and an advisory board agenda grounded in what these
+                experts are actually saying, rather than what we assumed they would say.
+              </div>
+            </div>
+          </div>
+
           <div class="project-impact">
             <div class="impact-stat">
               <div class="stat-value">51</div>
