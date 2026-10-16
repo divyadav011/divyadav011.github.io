@@ -354,6 +354,33 @@
       box-shadow: var(--shadow);
       display: block;
     }
+    .project-card + .project-card { margin-top: 28px; }
+    .project-impact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 22px 0 18px;
+    }
+    .impact-stat {
+      background: var(--bg-alt);
+      border-radius: 10px;
+      padding: 14px 18px;
+      min-width: 150px;
+      flex: 1 1 150px;
+    }
+    .impact-stat .stat-value {
+      font-family: 'Fraunces', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--accent-deep);
+      line-height: 1.1;
+    }
+    .impact-stat .stat-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
     .project-tag {
       display: inline-block;
       background: var(--bg-alt);
@@ -726,6 +753,46 @@
         <h2>Projects</h2>
         <span class="section-no">03 / Projects</span>
       </div>
+      <div class="project-card">
+        <div>
+          <span class="project-tag">Medical Affairs · KOL Engagement · AI-enabled</span>
+          <h3>KOL Profiling Engine for an IBD Advisory Board</h3>
+          <p class="project-sub">
+            Profiled 51 inflammatory bowel disease (Crohn's and UC) key opinion leaders across US and
+            ex-US markets for a pharma client's advisory board. IBD is one of the most crowded spaces in
+            immunology, with IL-23s, JAKs and new oral mechanisms competing on sequencing and positioning,
+            so the brief went beyond names and affiliations: where does each expert stand on those debates,
+            and who will shape the conversation about this asset?
+          </p>
+          <ol class="project-workflow">
+            <li>Designed a standard KOL profile template covering clinical focus, institutional role, publication themes, congress activity, digital voice and stated positions relevant to the asset and indication.</li>
+            <li>Pulled the clinical and publication backbone for all 51 KOLs from H1.</li>
+            <li>Used Claude Cowork to extract and structure social media and congress activity (ECCO, DDW, UEG Week) against the template, then reviewed and corrected outputs rather than reading 51 timelines by hand.</li>
+            <li>Synthesised across all 51 profiles to surface recurring themes, points of disagreement and emerging topics.</li>
+            <li>Proposed strategic discussion themes for the advisory board, each mapped to the KOLs most likely to drive it.</li>
+          </ol>
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">51</div>
+              <div class="stat-label">KOL profiles, US &amp; ex-US</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">15 days</div>
+              <div class="stat-label">vs. 2-month manual baseline</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~75%</div>
+              <div class="stat-label">reduction in effort</div>
+            </div>
+          </div>
+          <p class="project-note">
+            <strong>What it became:</strong> the template and workflow are being built into Lucid's core
+            Fusion platform, so KOL profiles can be generated and tailored to a specific asset and
+            indication instead of rebuilt from scratch for every engagement.
+          </p>
+        </div>
+      </div>
+
       <div class="project-card">
         <div>
           <span class="project-tag">Full-stack · Med Comms</span>
