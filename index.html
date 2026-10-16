@@ -354,7 +354,56 @@
       box-shadow: var(--shadow);
       display: block;
     }
-    .project-card + .project-card { margin-top: 28px; }
+    .project-card + .project-card { margin-top: 20px; }
+    details.project-card { padding: 0; }
+    details.project-card summary::-webkit-details-marker { display: none; }
+    .project-summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 36px 40px 28px;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .project-summary:hover { background: rgba(217, 138, 95, 0.05); }
+    .project-summary .project-impact { margin-bottom: 0; }
+    .summary-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-deep);
+      background: var(--surface);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .project-summary:hover .summary-toggle { border-color: var(--accent); }
+    .summary-toggle::after {
+      content: '';
+      width: 7px; height: 7px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+      transition: transform 0.2s;
+    }
+    details[open] .summary-toggle::after { transform: rotate(-135deg) translateY(-1px); }
+    .toggle-close { display: none; }
+    details[open] .toggle-open { display: none; }
+    details[open] .toggle-close { display: inline; }
+    .project-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 36px;
+      align-items: start;
+      padding: 0 40px 40px;
+      border-top: 1px solid var(--line);
+    }
+    .project-body .project-main { padding-top: 8px; }
+    .project-body .scqa { margin-top: 20px; }
+    .project-body .context-panel { padding-top: 28px; }
     .scqa { margin-top: 24px; }
     .scqa-row {
       display: grid;
@@ -389,13 +438,7 @@
       .scqa-row { grid-template-columns: 1fr; gap: 6px; }
     }
 
-    /* Project card with a collapsible context panel on the right */
-    .project-card.has-context {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 300px;
-      gap: 36px;
-      align-items: start;
-    }
+    /* Collapsible context panel on the right of an open case */
     .context-panel { position: sticky; top: 90px; }
     .context-panel details {
       background: var(--bg-alt);
@@ -469,8 +512,9 @@
       font-style: italic;
     }
     @media (max-width: 820px) {
-      .project-card.has-context { grid-template-columns: 1fr; gap: 24px; }
-      .context-panel { position: static; }
+      .project-body { grid-template-columns: 1fr; gap: 24px; padding: 0 24px 28px; }
+      .project-summary { padding: 28px 24px 24px; }
+      .context-panel { position: static; padding-top: 0; }
     }
     .project-impact {
       display: flex;
@@ -702,7 +746,7 @@
       .hero-photo { margin: 0 auto; max-width: 280px; }
       .about-grid { grid-template-columns: 1fr; gap: 30px; }
       .edu-grid { grid-template-columns: 1fr; }
-      .project-card { grid-template-columns: 1fr; padding: 28px; gap: 28px; }
+      .project-card { padding: 0; }
       section.block { padding: 60px 0; }
       .nav-links { display: none; }
       .contact-box { padding: 32px 24px; }
@@ -870,15 +914,39 @@
         <h2>Projects</h2>
         <span class="section-no">03 / Projects</span>
       </div>
-      <div class="project-card has-context">
-        <div class="project-main">
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
           <span class="project-tag">Krystelis · Medical Affairs · KOL Engagement · AI-enabled</span>
+
           <h3>KOL Profiling Engine for an IBD Advisory Board</h3>
+
           <p class="project-sub">
             <strong>Brief:</strong> Profiled 51 IBD key opinion leaders across US and ex-US markets for a
             pharma advisory board and recommended its strategic discussion themes. Delivered in 15 days
             against a two-month manual baseline; now being built into Lucid's Fusion platform.
           </p>
+
+
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">51</div>
+              <div class="stat-label">KOL profiles, US &amp; ex-US</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">15 days</div>
+              <div class="stat-label">vs. 2-month manual baseline</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~75%</div>
+              <div class="stat-label">reduction in effort</div>
+            </div>
+          </div>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
 
           <div class="scqa">
             <div class="scqa-row">
@@ -923,22 +991,8 @@
               </div>
             </div>
           </div>
-
-          <div class="project-impact">
-            <div class="impact-stat">
-              <div class="stat-value">51</div>
-              <div class="stat-label">KOL profiles, US &amp; ex-US</div>
-            </div>
-            <div class="impact-stat">
-              <div class="stat-value">15 days</div>
-              <div class="stat-label">vs. 2-month manual baseline</div>
-            </div>
-            <div class="impact-stat">
-              <div class="stat-value">~75%</div>
-              <div class="stat-label">reduction in effort</div>
-            </div>
           </div>
-        </div>
+
 
         <aside class="context-panel">
           <details>
@@ -968,18 +1022,27 @@
             </div>
           </details>
         </aside>
-      </div>
+        </div>
+      </details>
 
-      <div class="project-card has-context">
-        <div class="project-main">
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
           <span class="project-tag">Krystelis · In-licensing Due Diligence · Immunology · HS &amp; axSpA · Ongoing strategic support</span>
+
           <h3>Asset Due Diligence</h3>
+
           <p class="project-sub">
             <strong>Brief:</strong> Evaluated two early-stage bispecific antibodies, TNF &times; IL-17A/F
             and TL1A &times; IL-17A, for hidradenitis suppurativa (HS) and axial spondyloarthritis (axSpA)
             on behalf of a biotech client building its pipeline through in-licensing. Client signed
             non-binding term sheets on both assets and has since closed its Series B.
           </p>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
 
           <div class="scqa">
             <div class="scqa-row">
@@ -1031,7 +1094,8 @@
               </div>
             </div>
           </div>
-        </div>
+          </div>
+
 
         <aside class="context-panel">
           <details>
@@ -1062,12 +1126,16 @@
             </div>
           </details>
         </aside>
-      </div>
+        </div>
+      </details>
 
-      <div class="project-card has-context">
-        <div class="project-main">
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
           <span class="project-tag">Krystelis · Market Access · Patient Insights · Diagnostics Launch</span>
+
           <h3>Integrated Disease Ecosystem Map: Alzheimer's</h3>
+
           <p class="project-sub">
             <strong>Brief:</strong> Built an outside-in map of the Alzheimer's disease ecosystem for a
             blood-based biomarker launch: care pathways and where the biomarker fits, patient personas from
@@ -1076,6 +1144,11 @@
             AI-enabled persona approach and is now extending the map across patient, clinician, payer,
             societal and technology perspectives.
           </p>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
 
           <div class="scqa">
             <div class="scqa-row">
@@ -1123,7 +1196,8 @@
               </div>
             </div>
           </div>
-        </div>
+          </div>
+
 
         <aside class="context-panel">
           <details>
@@ -1154,18 +1228,43 @@
             </div>
           </details>
         </aside>
-      </div>
+        </div>
+      </details>
 
-      <div class="project-card has-context">
-        <div class="project-main">
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
           <span class="project-tag">Krystelis · Med Comms · GenAI Tool Assessment · Product Development</span>
+
           <h3>MoA Image Generator</h3>
+
           <p class="project-sub">
             <strong>Brief:</strong> Benchmarked 20+ AI image-generation tools for a top-10 pharma client
             paying ~$20K per mechanism-of-action (MoA) visual; shortlisted Gemini and GPT, built the prompt
             library and trained the team. Saving ~$80K a year, cutting briefing time ~25%, and now a
             product in testing on a colorectal cancer asset.
           </p>
+
+
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">20+</div>
+              <div class="stat-label">AI tools benchmarked</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~$80K</div>
+              <div class="stat-label">saved per year vs. $20K per visual</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~25%</div>
+              <div class="stat-label">less briefing time per visual</div>
+            </div>
+          </div>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
 
           <div class="scqa">
             <div class="scqa-row">
@@ -1212,22 +1311,8 @@
               </div>
             </div>
           </div>
-
-          <div class="project-impact">
-            <div class="impact-stat">
-              <div class="stat-value">20+</div>
-              <div class="stat-label">AI tools benchmarked</div>
-            </div>
-            <div class="impact-stat">
-              <div class="stat-value">~$80K</div>
-              <div class="stat-label">saved per year vs. $20K per visual</div>
-            </div>
-            <div class="impact-stat">
-              <div class="stat-value">~25%</div>
-              <div class="stat-label">less briefing time per visual</div>
-            </div>
           </div>
-        </div>
+
 
         <aside class="context-panel">
           <details>
@@ -1255,12 +1340,16 @@
             </div>
           </details>
         </aside>
-      </div>
+        </div>
+      </details>
 
-      <div class="project-card has-context">
-        <div class="project-main">
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
           <span class="project-tag">Krystelis · Clinical Operations · Quality Management · Process &amp; Change</span>
+
           <h3>Clinical Development Quality Management Implementation</h3>
+
           <p class="project-sub">
             <strong>Brief:</strong> Supported the redesign and implementation of a pharma client's
             clinical development SOPs, replacing overlapping procedures, unclear roles and duplicated
@@ -1268,6 +1357,27 @@
             data monitoring, oversight and close-out. Authored 10+ SOPs with 50+ stakeholders, saving
             roughly 11 hours per FTE per year.
           </p>
+
+
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">10+</div>
+              <div class="stat-label">SOPs authored, ICH-GCP aligned</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">50+</div>
+              <div class="stat-label">stakeholders engaged</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~11 hrs</div>
+              <div class="stat-label">saved per FTE per year</div>
+            </div>
+          </div>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
 
           <div class="scqa">
             <div class="scqa-row">
@@ -1315,22 +1425,8 @@
               </div>
             </div>
           </div>
-
-          <div class="project-impact">
-            <div class="impact-stat">
-              <div class="stat-value">10+</div>
-              <div class="stat-label">SOPs authored, ICH-GCP aligned</div>
-            </div>
-            <div class="impact-stat">
-              <div class="stat-value">50+</div>
-              <div class="stat-label">stakeholders engaged</div>
-            </div>
-            <div class="impact-stat">
-              <div class="stat-value">~11 hrs</div>
-              <div class="stat-label">saved per FTE per year</div>
-            </div>
           </div>
-        </div>
+
 
         <aside class="context-panel">
           <details>
@@ -1357,12 +1453,16 @@
             </div>
           </details>
         </aside>
-      </div>
+        </div>
+      </details>
 
-      <div class="project-card has-context">
-        <div class="project-main">
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
           <span class="project-tag">Krystelis · Internal Initiative · AI Adoption · Productisation</span>
+
           <h3>Data, Tech &amp; AI Guild</h3>
+
           <p class="project-sub">
             <strong>Brief:</strong> Lead a nine-member internal guild driving AI adoption at Krystelis and
             turning project IP into reusable products for the Lucid portfolio. Current workstreams: scaling
@@ -1371,6 +1471,27 @@
             listening-tailored outreach to 1,000+ contacts. Trained ~20 colleagues on prompt engineering,
             custom GPTs and low-code Python apps along the way.
           </p>
+
+
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">9</div>
+              <div class="stat-label">guild members led</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~20</div>
+              <div class="stat-label">colleagues trained on AI tools</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">1,000+</div>
+              <div class="stat-label">contacts in tailored-outreach pilot</div>
+            </div>
+          </div>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
 
           <div class="scqa">
             <div class="scqa-row">
@@ -1417,22 +1538,8 @@
               </div>
             </div>
           </div>
-
-          <div class="project-impact">
-            <div class="impact-stat">
-              <div class="stat-value">9</div>
-              <div class="stat-label">guild members led</div>
-            </div>
-            <div class="impact-stat">
-              <div class="stat-value">~20</div>
-              <div class="stat-label">colleagues trained on AI tools</div>
-            </div>
-            <div class="impact-stat">
-              <div class="stat-value">1,000+</div>
-              <div class="stat-label">contacts in tailored-outreach pilot</div>
-            </div>
           </div>
-        </div>
+
 
         <aside class="context-panel">
           <details>
@@ -1458,12 +1565,16 @@
             </div>
           </details>
         </aside>
-      </div>
+        </div>
+      </details>
 
-      <div class="project-card has-context">
-        <div class="project-main">
+      <details class="project-card">
+        <summary class="project-summary">
+          <div class="summary-head">
           <span class="project-tag">Accenture · Procurement · Technology Assessment · RFI to RFP</span>
+
           <h3>Task Mining Tool Selection for Procurement</h3>
+
           <p class="project-sub">
             <strong>Brief:</strong> Ran the technology assessment for a large mining company looking to
             find automation opportunities in its procurement function: scanned emerging task-mining
@@ -1471,6 +1582,11 @@
             Soroco for its ability to map how work is actually done and quantify the automation gains.
             The recommendation carried through to RFP, and the client shortlisted the tool for a pilot.
           </p>
+          </div>
+          <span class="summary-toggle"><span class="toggle-open">Open the case</span><span class="toggle-close">Close</span></span>
+        </summary>
+        <div class="project-body">
+          <div class="project-main">
 
           <div class="scqa">
             <div class="scqa-row">
@@ -1517,7 +1633,8 @@
               </div>
             </div>
           </div>
-        </div>
+          </div>
+
 
         <aside class="context-panel">
           <details>
@@ -1544,7 +1661,9 @@
             </div>
           </details>
         </aside>
-      </div>
+        </div>
+      </details>
+
     </div>
   </section>
 
