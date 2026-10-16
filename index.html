@@ -385,6 +385,81 @@
     @media (max-width: 820px) {
       .scqa-row { grid-template-columns: 1fr; gap: 6px; }
     }
+
+    /* Project card with a collapsible context panel on the right */
+    .project-card.has-context {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 36px;
+      align-items: start;
+    }
+    .context-panel { position: sticky; top: 90px; }
+    .context-panel details {
+      background: var(--bg-alt);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .context-panel details[open] { border-color: var(--accent-soft); }
+    .context-panel summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      user-select: none;
+    }
+    .context-panel summary::-webkit-details-marker { display: none; }
+    .context-panel summary .ctx-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .context-panel summary .ctx-hint {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      margin-top: 3px;
+    }
+    .context-panel details[open] summary .ctx-hint { display: none; }
+    .context-panel summary::after {
+      content: '+';
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--accent-deep);
+      flex-shrink: 0;
+    }
+    .context-panel details[open] summary::after { content: '\2212'; }
+    .context-body {
+      padding: 0 18px 18px;
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      border-top: 1px solid var(--line);
+    }
+    .context-body h5 {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin: 16px 0 6px;
+    }
+    .context-body p { margin-bottom: 8px; }
+    .context-body p:last-child { margin-bottom: 0; }
+    @media (max-width: 820px) {
+      .project-card.has-context { grid-template-columns: 1fr; gap: 24px; }
+      .context-panel { position: static; }
+    }
     .project-impact {
       display: flex;
       flex-wrap: wrap;
@@ -783,8 +858,8 @@
         <h2>Projects</h2>
         <span class="section-no">03 / Projects</span>
       </div>
-      <div class="project-card">
-        <div>
+      <div class="project-card has-context">
+        <div class="project-main">
           <span class="project-tag">Medical Affairs · KOL Engagement · AI-enabled</span>
           <h3>KOL Profiling Engine for an IBD Advisory Board</h3>
           <p class="project-sub">
@@ -799,18 +874,11 @@
             <div class="scqa-row">
               <div class="scqa-label">Situation</div>
               <div class="scqa-body">
-                Inflammatory bowel disease covers two chronic, relapsing conditions of the gut, Crohn's
-                disease and ulcerative colitis. In genetically susceptible people, an exaggerated immune
-                response to the gut's own microbiome drives persistent inflammation: in UC it is continuous
-                and confined to the lining of the colon; in Crohn's it is patchy, can affect any part of the
-                digestive tract and goes through the full bowel wall, leading to strictures and fistulas.
-                Onset is typically in the 20s and 30s, there is no cure, and around seven million people
-                live with it worldwide, so treatment is about inducing and holding remission for decades.
-                That makes IBD one of the most crowded spaces in immunology: anti-TNFs going biosimilar,
-                IL-23 inhibitors fighting for first-line position, oral JAK and S1P drugs, and new mechanisms
-                such as TL1A in phase 3. With no reliable biomarker to predict response, the live debates
-                among gastroenterologists are about sequencing, how early and aggressively to treat, and
-                safety trade-offs between classes. The client needed to know not just who the experts were,
+                A pharma client was preparing an advisory board for an asset in inflammatory bowel disease.
+                IBD is one of the most crowded fields in immunology, with ten-plus advanced therapies and no
+                reliable biomarker to predict who responds to which, so the live debates among
+                gastroenterologists are about sequencing, how early and aggressively to treat, and safety
+                trade-offs between drug classes. The client needed to know not just who the experts were,
                 but where each stood on those debates and who would shape the conversation about this asset.
               </div>
             </div>
@@ -865,10 +933,26 @@
             indication instead of rebuilt from scratch for every engagement.
           </p>
         </div>
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Disease context<span class="ctx-hint">Tap to open: what IBD is and how it is treated</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>What IBD is</h5>
+              <p>Inflammatory bowel disease covers two chronic, relapsing conditions of the gut: Crohn's disease and ulcerative colitis. In genetically susceptible people, an exaggerated immune response to the gut's own microbiome drives persistent inflammation. Onset is typically in the 20s and 30s, there is no cure, and around seven million people live with it worldwide, so treatment is about inducing and holding remission for decades.</p>
+              <h5>Crohn's vs. UC</h5>
+              <p>In UC the inflammation is continuous and confined to the lining of the colon and rectum; colectomy is curative but life-altering. In Crohn's it is patchy, can affect any part of the digestive tract and goes through the full bowel wall, leading to strictures, fistulas and abscesses; most patients eventually need surgery, and surgery is not curative. UC is often the proof-of-concept indication for a new mechanism, with Crohn's following a year or two later.</p>
+              <h5>Treatment landscape</h5>
+              <p>Conventional therapy (5-ASAs, steroids, immunomodulators) at the base; above it the advanced therapies where the commercial action is: anti-TNFs now largely biosimilar, the gut-selective anti-integrin vedolizumab, IL-23 inhibitors as the current growth engine, oral JAK and S1P drugs, and new mechanisms such as anti-TL1A antibodies and obefazimod in phase 3. Most monotherapies plateau at 30 to 40% remission, which drives the debates about sequencing, early intervention and combination therapy.</p>
+            </div>
+          </details>
+        </aside>
       </div>
 
-      <div class="project-card">
-        <div>
+      <div class="project-card has-context">
+        <div class="project-main">
           <span class="project-tag">In-licensing Due Diligence · Immunology · HS &amp; axSpA · Ongoing strategic support</span>
           <h3>Asset Due Diligence</h3>
           <p class="project-sub">
@@ -887,24 +971,14 @@
             <div class="scqa-row">
               <div class="scqa-label">Situation</div>
               <div class="scqa-body">
-                Immunology is the largest therapeutic market after oncology, and its centre of gravity is
-                shifting. The anti-TNF class that built the market has gone biosimilar; growth now comes
-                from IL-17 and IL-23 antibodies and oral JAK inhibitors, and the next wave is bispecifics
-                that block two cytokines at once, to raise a response ceiling that single-target drugs have
-                not moved in a decade. HS and axSpA are two of the indications where that ceiling bites
-                hardest. HS is a chronic, painful inflammatory skin disease in which hair follicles in the
-                armpits, groin and buttocks become blocked and inflamed, forming recurring abscesses and
-                tunnels under the skin; it affects around 1% of people, is typically diagnosed seven to ten
-                years late, and had only one approved biologic until 2023, with IL-17 antibodies since
-                added and roughly half of patients still not reaching a meaningful response. AxSpA is
-                chronic inflammatory arthritis of the spine and sacroiliac joints, strongly linked to the
-                HLA-B27 gene, that starts in young adults and progresses to fusion of the spine if
-                uncontrolled; TNF blockers have been the backbone since the early 2000s, IL-17 antibodies and
-                JAK inhibitors have joined them, and IL-23 blockade, which works in psoriasis and Crohn's,
-                failed here, a reminder that pathways do not transfer between indications automatically.
-                The client had identified two bispecifics that pair IL-17A with a second validated axis and
-                needed to know, before committing to a term sheet, whether each was a credible asset and in
-                which indications it could be differentiated.
+                A biotech client that builds its pipeline by in-licensing rather than discovering in-house
+                had identified two early-stage bispecific antibodies, TNF &times; IL-17A/F and
+                TL1A &times; IL-17A, aimed at inflammatory diseases, particularly hidradenitis suppurativa
+                and axial spondyloarthritis. Both are indications where single-target biologics have hit a
+                response ceiling, and bispecifics that block two cytokines at once are the industry's bet on
+                moving it. Before committing to a term sheet, the client needed to know whether each asset
+                was scientifically credible, how it would be differentiated against incumbents and
+                competitor programmes, and in which indications it could win.
               </div>
             </div>
             <div class="scqa-row">
@@ -955,6 +1029,22 @@
             </div>
           </div>
         </div>
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Disease &amp; market context<span class="ctx-hint">Tap to open: the immunology market, HS and axSpA</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>Why bispecifics, why now</h5>
+              <p>Immunology is the largest therapeutic market after oncology, and its centre of gravity is shifting. The anti-TNF class that built the market has gone biosimilar; growth now comes from IL-17 and IL-23 antibodies and oral JAK inhibitors. The next wave is bispecifics that block two cytokines at once, aiming to raise a response ceiling that single-target drugs have not moved in a decade.</p>
+              <h5>Hidradenitis suppurativa</h5>
+              <p>A chronic, painful inflammatory skin disease in which hair follicles in the armpits, groin and buttocks become blocked and inflamed, forming recurring abscesses and tunnels under the skin. It affects around 1% of people and is typically diagnosed seven to ten years late. Adalimumab was the only approved biologic until 2023; IL-17 antibodies have since been added, and roughly half of patients still do not reach a meaningful response (HiSCR), so the pipeline is crowded with IL-17, IL-1 and JAK programmes.</p>
+              <h5>Axial spondyloarthritis</h5>
+              <p>Chronic inflammatory arthritis of the spine and sacroiliac joints, strongly linked to the HLA-B27 gene, that starts in young adults and can progress to fusion of the spine if uncontrolled. TNF blockers have been the backbone since the early 2000s; IL-17 antibodies and JAK inhibitors have joined them. IL-23 blockade, which works in psoriasis and Crohn's, failed in axSpA, a reminder that pathways do not transfer between indications automatically. The standard efficacy endpoint is ASAS40.</p>
+            </div>
+          </details>
+        </aside>
       </div>
 
       <div class="project-card">
