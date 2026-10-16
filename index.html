@@ -1047,23 +1047,105 @@
         </aside>
       </div>
 
-      <div class="project-card">
-        <div>
-          <span class="project-tag">Full-stack · Med Comms</span>
+      <div class="project-card has-context">
+        <div class="project-main">
+          <span class="project-tag">Med Comms · GenAI Tool Assessment · Product Development</span>
           <h3>MoA Image Generator</h3>
           <p class="project-sub">
-            A full-stack tool for Med Comms teams to generate Mechanism of Action (MoA)
-            scientific illustrations for pharmaceutical assets — combining PubMed research,
-            LLM prompt engineering, and image generation in one workflow.
+            <strong>Brief:</strong> Led the assessment of AI image-generation tools for a top-10 pharma
+            client that was paying around $20K per mechanism-of-action (MoA) visual. Benchmarked 20+ tools
+            against a purpose-built framework, shortlisted two (Gemini and GPT), built a prompt library and
+            trained the team on prompt engineering for scientific visuals. The approach is saving the client
+            roughly $80K a year, has cut briefing time by about 25%, and has since been handed to the
+            development team as a product, now being tested on visuals for a colorectal cancer asset.
           </p>
-          <ol class="project-workflow">
-            <li>Enter a pharmaceutical asset name (e.g. <em>semaglutide</em>, <em>pembrolizumab</em>).</li>
-            <li>The app queries PubMed for relevant MoA steps.</li>
-            <li>Select an LLM (Anthropic / OpenAI / Gemini) to write a structured image prompt.</li>
-            <li>Review and edit the prompt before image generation.</li>
-            <li>Select an image generation model (DALL·E 3 / Imagen 3) and generate 2–3 images.</li>
-          </ol>
+
+          <div class="scqa">
+            <div class="scqa-row">
+              <div class="scqa-label">Situation</div>
+              <div class="scqa-body">
+                MoA visuals are the workhorse illustration of pharma medical communications: they show how a
+                drug acts on its target and appear in MSL decks, congress posters, training materials and
+                HCP-facing content. The client was commissioning each one from specialist medical
+                illustrators at roughly $20K per visual, with weeks of briefing and revision cycles behind
+                every image. Generative image tools had become good enough to raise an obvious question:
+                could they produce MoA visuals of acceptable scientific quality, and if so, which tool and
+                how?
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Complication</div>
+              <div class="scqa-body">
+                Generic image quality was not the problem; scientific fidelity was. Off-the-shelf tools
+                drew receptors and signalling cascades that looked plausible but were wrong, garbled the
+                text labels that MoA visuals depend on, and could not hold a consistent style across a
+                series of images for the same asset. There were more than twenty candidate tools with no
+                standard way to compare them, the results were highly sensitive to how the prompt was
+                written, and the client's medical, legal and regulatory review meant any error would be
+                caught late and expensively. Even with the right tool, the medical writers who would use it
+                had no prompt-engineering experience, so a recommendation alone would not change anything.
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Solution</div>
+              <div class="scqa-body">
+                <ol>
+                  <li>Built an assessment framework for scientific image generation: scientific accuracy, text rendering, ease and reproducibility of prompting, stylistic consistency, iteration speed and cost.</li>
+                  <li>Ran 20+ image-generation tools through the framework on the same set of MoA briefs and shortlisted two, Gemini and GPT, as fit for purpose.</li>
+                  <li>Wrote the prompt library and testing guide: structured prompt templates for MoA visuals that encode the scientific content, labelling and style the client's reviewers expect.</li>
+                  <li>Delivered prompt-engineering training to the medical writing team so they could brief and iterate visuals themselves rather than routing every image through an illustrator.</li>
+                  <li>Handed the framework and prompt library to the development team as the specification for a product: enter an asset, retrieve MoA steps from PubMed, generate a structured prompt with an LLM, review it, and generate the visuals.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="scqa-row">
+              <div class="scqa-label">Impact</div>
+              <div class="scqa-body">
+                The shortlisted tools and prompt library are replacing the $20K-per-visual spend, saving
+                the client roughly $80K a year, and briefing time for a new visual is down by about 25%.
+                The work has moved from assessment into product: the development team has built the MoA
+                Image Generator on the prompt library, and it is now in testing on visuals for a colorectal
+                cancer asset.
+              </div>
+            </div>
+          </div>
+
+          <div class="project-impact">
+            <div class="impact-stat">
+              <div class="stat-value">20+</div>
+              <div class="stat-label">AI tools benchmarked</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~$80K</div>
+              <div class="stat-label">saved per year vs. $20K per visual</div>
+            </div>
+            <div class="impact-stat">
+              <div class="stat-value">~25%</div>
+              <div class="stat-label">less briefing time per visual</div>
+            </div>
+          </div>
+          <p class="project-note">
+            <strong>What it became:</strong> a product. The MoA Image Generator takes an asset name, pulls
+            the mechanism steps from PubMed, drafts a structured image prompt with an LLM for the user to
+            review, and generates the visuals, currently being tested for a colorectal cancer asset.
+          </p>
         </div>
+
+        <aside class="context-panel">
+          <details>
+            <summary>
+              <span class="ctx-title">Domain context<span class="ctx-hint">Tap to open: what MoA visuals are and why AI struggles with them</span></span>
+            </summary>
+            <div class="context-body">
+              <h5>What an MoA visual is</h5>
+              <p>A mechanism-of-action illustration shows how a drug works at the molecular or cellular level: the target it binds, the pathway it blocks or activates, and the downstream effect on the disease. In pharma medical communications they are everywhere, from MSL slide decks and congress posters to HCP education and internal training, and they have to be scientifically defensible because they pass through medical, legal and regulatory (MLR) review before use.</p>
+              <h5>Why they cost so much</h5>
+              <p>Each visual is traditionally commissioned from a specialist medical illustrator, briefed by a medical writer, and revised over several rounds with scientific reviewers. The cost is driven less by drawing than by the accuracy and review burden, which is why a single image can run to $20K and several weeks.</p>
+              <h5>Why generative AI struggles</h5>
+              <p>Image models are trained on general imagery, not validated biology, so they produce plausible-looking but incorrect receptors, pathways and cell structures; they have historically rendered text labels poorly; and they struggle to keep a consistent style across a series. Getting usable output depends on highly structured prompting and a review step, which is why tool selection, a prompt library and training mattered as much as the model itself.</p>
+            </div>
+          </details>
+        </aside>
       </div>
     </div>
   </section>
